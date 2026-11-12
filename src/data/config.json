@@ -4,51 +4,49 @@
     "tagline": "INTERIOR ARCHITECTURE // RAW DESIGN",
     "manifesto": "Architettura d'interni fondata sulla sincerità costruttiva, geometrie monolitiche e materia viva: cemento spatolato a mano, ferro grezzo cerato, legno fossile e pietre d'oriente trattate con lavorazioni artigianali radicali.",
     "accentColor": "#FF3B00",
-    "badge": "NFC SECURE TAG // ED. 2026",
+    "badge": "CERTIFIED INTERIOR PROJECT // NFC TAG",
     "location": "MILANO // ZÜRICH"
   },
   "contacts": {
     "vcardPath": "/walddei.vcf",
-    "vcardLabel": "SCARICA CONTATTO [.VCF]",
+    "vcardLabel": "[ + SALVA CONTATTO IN RUBRICA ]",
     "actions": [
       {
         "id": "whatsapp",
-        "label": "DIRETTO STUDIO [WHATSAPP]",
+        "label": "WHATSAPP",
+        "sublabel": "MESSAGGIO DIRETTO",
         "url": "https://wa.me/390289000000",
         "type": "primary",
         "icon": "MessageSquare"
       },
       {
-        "id": "instagram",
-        "label": "ARCHIVIO VISIVO [INSTAGRAM]",
-        "url": "https://instagram.com/walddei.interiors",
-        "type": "secondary",
-        "icon": "Instagram"
+        "id": "phone",
+        "label": "CHIAMATA",
+        "sublabel": "LINEA DIRETTA",
+        "url": "tel:+390289000000",
+        "type": "primary",
+        "icon": "Phone"
       },
       {
         "id": "portfolio",
-        "label": "PORTFOLIO DIGITALE [WEB]",
+        "label": "PORTFOLIO / IG",
+        "sublabel": "ARCHIVIO PROGETTI",
         "url": "https://walddei.com",
         "type": "secondary",
         "icon": "Globe"
       },
       {
         "id": "email",
-        "label": "CONSULENZA // PROGETTI [EMAIL]",
+        "label": "EMAIL",
+        "sublabel": "CONSULENZA",
         "url": "mailto:studio@walddei.com",
         "type": "secondary",
         "icon": "Mail"
       },
       {
-        "id": "phone",
-        "label": "LINEA DIRETTA STUDIO [CALL]",
-        "url": "tel:+390289000000",
-        "type": "secondary",
-        "icon": "Phone"
-      },
-      {
         "id": "location",
-        "label": "ATELIER & HEADQUARTERS [MAP]",
+        "label": "ATELIER & MAP",
+        "sublabel": "VIA TORTONA 31",
         "url": "https://maps.google.com/?q=Via+Tortona+Milano",
         "type": "secondary",
         "icon": "MapPin"
@@ -57,7 +55,10 @@
   },
   "arExperience": {
     "enabled": true,
-    "sectionTitle": "01 // ESPLORAZIONE MATERICA AR",
+    "sectionTitle": "01 // MATERIALI & AR",
+    "shortDescription": "Esplora i campioni materici del monolite e proiettalo nella stanza tramite WebAR.",
+    "openButtonLabel": "[ APRI ESPERIENZA 3D / AR ]",
+    "closeButtonLabel": "[ X CHIUDI ]",
     "instructions": "RUOTA IL MONOLITE O TOCCA I PUNTI PER ISPEZIONARE I MATERIALI. PREMI IL TASTO AR PER PROIETTARLO NELLO SPAZIO.",
     "modelPath": "/models/walddei-monolith.glb",
     "posterPath": "/images/monolith-poster.png",

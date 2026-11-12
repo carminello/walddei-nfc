@@ -14,7 +14,7 @@ import {
   ExternalLink
 } from "lucide-react";
 
-export default function ArViewer({ arConfig, brandConfig }) {
+export default function ArViewer({ arConfig, brandConfig, onClose }) {
   const [isViewerLoaded, setIsViewerLoaded] = useState(false);
   const [selectedHotspot, setSelectedHotspot] = useState(null);
   const [showHotspots, setShowHotspots] = useState(true);
@@ -97,6 +97,16 @@ export default function ArViewer({ arConfig, brandConfig }) {
           </h2>
         </div>
         <div className="flex items-center gap-2">
+          {onClose && (
+            <button
+              type="button"
+              onClick={onClose}
+              className="flex items-center gap-1 bg-[#0A0A0A] hover:bg-[#FF3B00] text-white px-2 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider border border-[#0A0A0A] transition-colors"
+            >
+              <X className="w-3 h-3" />
+              <span>CHIUDI</span>
+            </button>
+          )}
           <span className="font-mono text-[10px] text-raw-muted uppercase tracking-wider">
             WEBXR / SCENE-VIEWER
           </span>
