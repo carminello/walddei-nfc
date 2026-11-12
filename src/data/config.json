@@ -1,0 +1,101 @@
+{
+  "brand": {
+    "name": "WALDDEI",
+    "tagline": "INTERIOR ARCHITECTURE // RAW DESIGN",
+    "manifesto": "Architettura d'interni fondata sulla sincerità costruttiva, geometrie monolitiche e materia viva: cemento spatolato a mano, ferro grezzo cerato, legno fossile e pietre d'oriente trattate con lavorazioni artigianali radicali.",
+    "accentColor": "#FF3B00",
+    "badge": "NFC SECURE TAG // ED. 2026",
+    "location": "MILANO // ZÜRICH"
+  },
+  "contacts": {
+    "vcardPath": "/walddei.vcf",
+    "vcardLabel": "SCARICA CONTATTO [.VCF]",
+    "actions": [
+      {
+        "id": "whatsapp",
+        "label": "DIRETTO STUDIO [WHATSAPP]",
+        "url": "https://wa.me/390289000000",
+        "type": "primary",
+        "icon": "MessageSquare"
+      },
+      {
+        "id": "instagram",
+        "label": "ARCHIVIO VISIVO [INSTAGRAM]",
+        "url": "https://instagram.com/walddei.interiors",
+        "type": "secondary",
+        "icon": "Instagram"
+      },
+      {
+        "id": "portfolio",
+        "label": "PORTFOLIO DIGITALE [WEB]",
+        "url": "https://walddei.com",
+        "type": "secondary",
+        "icon": "Globe"
+      },
+      {
+        "id": "email",
+        "label": "CONSULENZA // PROGETTI [EMAIL]",
+        "url": "mailto:studio@walddei.com",
+        "type": "secondary",
+        "icon": "Mail"
+      },
+      {
+        "id": "phone",
+        "label": "LINEA DIRETTA STUDIO [CALL]",
+        "url": "tel:+390289000000",
+        "type": "secondary",
+        "icon": "Phone"
+      },
+      {
+        "id": "location",
+        "label": "ATELIER & HEADQUARTERS [MAP]",
+        "url": "https://maps.google.com/?q=Via+Tortona+Milano",
+        "type": "secondary",
+        "icon": "MapPin"
+      }
+    ]
+  },
+  "arExperience": {
+    "enabled": true,
+    "sectionTitle": "01 // ESPLORAZIONE MATERICA AR",
+    "instructions": "RUOTA IL MONOLITE O TOCCA I PUNTI PER ISPEZIONARE I MATERIALI. PREMI IL TASTO AR PER PROIETTARLO NELLO SPAZIO.",
+    "modelPath": "/models/walddei-monolith.glb",
+    "posterPath": "/images/monolith-poster.png",
+    "arButtonLabel": "[ PROIETTA NELLA STANZA // AR ]",
+    "hotspots": [
+      {
+        "id": "hotspot-1",
+        "slot": "hotspot-1",
+        "position": "0.15m 0.45m 0.1m",
+        "normal": "0m 0m 1m",
+        "code": "MAT // 01",
+        "title": "CEMENTO GREZZO",
+        "description": "Finitura materica spatolata a mano, poro aperto naturale con trattamento idrorepellente ecologico."
+      },
+      {
+        "id": "hotspot-2",
+        "slot": "hotspot-2",
+        "position": "-0.18m 0.12m 0.12m",
+        "normal": "0m 0m 1m",
+        "code": "MAT // 02",
+        "title": "FERRO NATURALE BRUNITO",
+        "description": "Lastra da 6mm ossidata con acidi vegetali e sigillata a caldo con cera microcristallina."
+      },
+      {
+        "id": "hotspot-3",
+        "slot": "hotspot-3",
+        "position": "0.0m -0.32m 0.15m",
+        "normal": "0m 1m 0m",
+        "code": "MAT // 03",
+        "title": "ROVERE DI PALUDE FOSSILE",
+        "description": "Legno massello secolare estratto da sedimenti fluviali, spazzolatura a fiamma viva."
+      }
+    ]
+  },
+  "footer": {
+    "creditText": "NFC ARTIFACT ENGINEERED BY CARMINELLOLAB",
+    "creditUrl": "https://instagram.com/carminellolab",
+    "year": "2026",
+    "license": "PROPRIETARY PHYSICAL ARTIFACT"
+  }
+}

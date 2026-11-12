@@ -1,0 +1,327 @@
+"use client";
+
+import { useEffect, useState, useRef } from "react";
+import { 
+  Eye, 
+  EyeOff, 
+  Box, 
+  Sparkles, 
+  X, 
+  RotateCcw, 
+  Layers, 
+  AlertCircle,
+  FileCode,
+  ExternalLink
+} from "lucide-react";
+
+export default function ArViewer({ arConfig, brandConfig }) {
+  const [isViewerLoaded, setIsViewerLoaded] = useState(false);
+  const [selectedHotspot, setSelectedHotspot] = useState(null);
+  const [showHotspots, setShowHotspots] = useState(true);
+  const [modelError, setModelError] = useState(false);
+  const [isLoadingModel, setIsLoadingModel] = useState(true);
+  const viewerRef = useRef(null);
+
+  const accentColor = brandConfig?.accentColor || "#FF3B00";
+  const hotspots = arConfig?.hotspots || [];
+
+  // Client-side dynamic import of @google/model-viewer to prevent SSR conflicts
+  useEffect(() => {
+    let isMounted = true;
+    import("@google/model-viewer")
+      .then(() => {
+        if (isMounted) setIsViewerLoaded(true);
+      })
+      .catch((err) => {
+        console.error("Errore caricamento @google/model-viewer:", err);
+        if (isMounted) setModelError(true);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  // Listen to model-viewer load and error events
+  useEffect(() => {
+    const viewer = viewerRef.current;
+    if (!viewer) return;
+
+    const handleLoad = () => {
+      setIsLoadingModel(false);
+      setModelError(false);
+    };
+
+    const handleError = (e) => {
+      console.warn("Model-viewer file loading warning:", e);
+      setIsLoadingModel(false);
+      setModelError(true);
+    };
+
+    const handleProgress = (event) => {
+      if (event.detail?.totalProgress === 1) {
+        setIsLoadingModel(false);
+      }
+    };
+
+    viewer.addEventListener("load", handleLoad);
+    viewer.addEventListener("error", handleError);
+    viewer.addEventListener("progress", handleProgress);
+
+    return () => {
+      viewer.removeEventListener("load", handleLoad);
+      viewer.removeEventListener("error", handleError);
+      viewer.removeEventListener("progress", handleProgress);
+    };
+  }, [isViewerLoaded]);
+
+  const resetCamera = () => {
+    if (viewerRef.current) {
+      viewerRef.current.cameraOrbit = "0deg 75deg 105%";
+      viewerRef.current.cameraTarget = "auto auto auto";
+      viewerRef.current.fieldOfView = "auto";
+    }
+  };
+
+  return (
+    <div className="w-full flex flex-col gap-3">
+      {/* Brutalist Section Header Bar */}
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b-2 border-[#0A0A0A] pb-2">
+        <div className="flex items-center gap-2">
+          <div 
+            className="w-3 h-3 border border-[#0A0A0A]" 
+            style={{ backgroundColor: accentColor }} 
+          />
+          <h2 className="font-mono font-bold text-xs uppercase tracking-widest text-[#0A0A0A]">
+            {arConfig?.sectionTitle || "01 // ESPLORAZIONE MATERICA AR"}
+          </h2>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="font-mono text-[10px] text-raw-muted uppercase tracking-wider">
+            WEBXR / SCENE-VIEWER
+          </span>
+        </div>
+      </div>
+
+      {/* Main 3D Container with Brutalist 3px Border */}
+      <div className="relative w-full aspect-[4/5] sm:aspect-square bg-[#F4F4F0] border-3 border-[#0A0A0A] shadow-brutal overflow-hidden group">
+        
+        {/* Top Control Overlay */}
+        <div className="absolute top-3 left-3 right-3 z-20 flex items-center justify-between pointer-events-none">
+          {/* Status Badge */}
+          <div className="pointer-events-auto flex items-center gap-1.5 bg-[#0A0A0A] text-[#FFFFFF] px-2.5 py-1 text-[10px] font-mono font-bold tracking-wider uppercase border border-[#0A0A0A] shadow-[2px_2px_0px_#FFFFFF]">
+            <span className="relative flex h-2 w-2">
+              <span 
+                className="animate-ping absolute inline-flex h-full w-full opacity-75"
+                style={{ backgroundColor: accentColor }}
+              />
+              <span 
+                className="relative inline-flex h-2 w-2"
+                style={{ backgroundColor: accentColor }}
+              />
+            </span>
+            <span>LIVE 3D // WEB-AR</span>
+          </div>
+
+          {/* Quick Controls: Toggle Hotspots & Reset Camera */}
+          <div className="pointer-events-auto flex items-center gap-1.5">
+            <button
+              type="button"
+              onClick={() => setShowHotspots((prev) => !prev)}
+              aria-label="Mostra o nascondi punti materici"
+              className="flex items-center gap-1 bg-[#FFFFFF] hover:bg-[#F4F4F0] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none text-[#0A0A0A] border-2 border-[#0A0A0A] px-2 py-1 text-[10px] font-mono font-bold uppercase tracking-wider shadow-[2px_2px_0px_#0A0A0A] transition-all"
+            >
+              {showHotspots ? (
+                <>
+                  <Eye className="w-3 h-3 text-[#0A0A0A]" />
+                  <span>PUNTI: ON</span>
+                </>
+              ) : (
+                <>
+                  <EyeOff className="w-3 h-3 text-raw-muted" />
+                  <span>PUNTI: OFF</span>
+                </>
+              )}
+            </button>
+
+            <button
+              type="button"
+              onClick={resetCamera}
+              aria-label="Reimposta vista 3D"
+              title="Reset prospettiva"
+              className="flex items-center justify-center bg-[#FFFFFF] hover:bg-[#F4F4F0] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none text-[#0A0A0A] border-2 border-[#0A0A0A] p-1 text-[10px] shadow-[2px_2px_0px_#0A0A0A] transition-all"
+            >
+              <RotateCcw className="w-3 h-3" />
+            </button>
+          </div>
+        </div>
+
+        {/* 3D Model Viewer or Loading / Fallback State */}
+        {!isViewerLoaded ? (
+          <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-[#EBEBE6]">
+            <div className="w-10 h-10 border-2 border-[#0A0A0A] border-t-transparent animate-spin mb-4" />
+            <p className="font-mono text-xs font-bold tracking-widest uppercase text-[#0A0A0A]">
+              INIZIALIZZAZIONE RUNTIME WEB-AR...
+            </p>
+            <p className="font-mono text-[10px] text-raw-muted mt-1 uppercase">
+              Caricamento modulo @google/model-viewer
+            </p>
+          </div>
+        ) : modelError ? (
+          /* Graceful Brutalist Fallback when 3D file is missing or failed */
+          <div className="w-full h-full flex flex-col justify-between p-5 bg-[#EBEBE6] text-[#0A0A0A] relative">
+            <div className="pt-10 flex flex-col items-center text-center">
+              <div 
+                className="w-16 h-16 border-2 border-[#0A0A0A] bg-[#FFFFFF] shadow-brutal flex items-center justify-center mb-3"
+              >
+                <Box className="w-8 h-8 text-[#0A0A0A]" />
+              </div>
+              <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#0A0A0A] text-white text-[10px] font-mono font-bold tracking-widest uppercase mb-2">
+                <AlertCircle className="w-3 h-3 text-[#FF3B00]" />
+                <span>3D MODEL ASSET // STANDBY</span>
+              </div>
+              <h3 className="font-mono font-bold text-sm tracking-tight uppercase">
+                MONOLITE NON PRESENTE IN PUBLIC
+              </h3>
+              <p className="font-mono text-[11px] text-raw-muted mt-2 max-w-xs leading-relaxed">
+                Carica il file <code className="bg-white border border-[#0A0A0A] px-1 py-0.5 font-bold text-black">{arConfig?.modelPath || "/models/walddei-monolith.glb"}</code> nella cartella del progetto per attivare la rotazione e la proiezione AR.
+              </p>
+            </div>
+
+            {/* Mock Blueprint Schematic while in standby */}
+            <div className="border-2 border-dashed border-[#0A0A0A] p-3 bg-white font-mono text-[10px] space-y-1">
+              <div className="flex justify-between border-b border-[#0A0A0A]/20 pb-1 font-bold">
+                <span>SPECIFICA ARCHITETTONICA</span>
+                <span>REV. 01</span>
+              </div>
+              <div className="flex justify-between text-raw-muted">
+                <span>DIMENSIONI NOMINALI:</span>
+                <span className="font-bold text-black">400 x 400 x 1200 mm</span>
+              </div>
+              <div className="flex justify-between text-raw-muted">
+                <span>HOTSPOTS CONFIGURATI:</span>
+                <span className="font-bold text-black">{hotspots.length} MATERIALI</span>
+              </div>
+            </div>
+
+            {/* Simula Hotspot demo in fallback per mostrare l'interfaccia interattiva */}
+            <div className="flex flex-wrap gap-1.5 pt-2 border-t border-[#0A0A0A]">
+              <span className="font-mono text-[10px] font-bold uppercase w-full">
+                HOTSPOTS MATERICI DISPONIBILI:
+              </span>
+              {hotspots.map((h) => (
+                <button
+                  key={h.id}
+                  onClick={() => setSelectedHotspot(h)}
+                  className="bg-white border-2 border-[#0A0A0A] px-2 py-1 font-mono text-[10px] font-bold shadow-[2px_2px_0px_#0A0A0A] active:translate-x-0.5 active:translate-y-0.5"
+                >
+                  {h.code} // {h.title}
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : (
+          /* Actual Model Viewer Element */
+          <model-viewer
+            ref={viewerRef}
+            src={arConfig?.modelPath || "/models/walddei-monolith.glb"}
+            poster={arConfig?.posterPath || "/images/monolith-poster.png"}
+            alt="WALDDEI Monolite Materico Interior Architecture"
+            ar
+            ar-modes="webxr scene-viewer quick-look"
+            camera-controls
+            auto-rotate
+            rotation-per-second="18deg"
+            shadow-intensity="1"
+            shadow-softness="0.2"
+            exposure="1.0"
+            camera-orbit="0deg 75deg 105%"
+            touch-action="pan-y"
+            interaction-prompt="auto"
+          >
+            {/* Dynamic Hotspot Buttons in 3D Space */}
+            {showHotspots &&
+              hotspots.map((hotspot, index) => {
+                const isSelected = selectedHotspot?.id === hotspot.id;
+                return (
+                  <button
+                    key={hotspot.id || index}
+                    slot={hotspot.slot || `hotspot-${index + 1}`}
+                    data-position={hotspot.position}
+                    data-normal={hotspot.normal}
+                    onClick={() => setSelectedHotspot(hotspot)}
+                    aria-label={`Ispeziona finitura: ${hotspot.title}`}
+                    className={`ar-hotspot-pin ${isSelected ? "accent-active" : ""}`}
+                    style={
+                      isSelected
+                        ? { backgroundColor: accentColor, color: "#FFFFFF", borderColor: "#0A0A0A" }
+                        : {}
+                    }
+                  >
+                    <span>{hotspot.code?.replace("MAT // ", "") || index + 1}</span>
+                  </button>
+                );
+              })}
+
+            {/* Custom AR Trigger Button (Slot ar-button recognized by model-viewer) */}
+            <button
+              slot="ar-button"
+              style={{ backgroundColor: accentColor }}
+              className="absolute bottom-4 left-4 right-4 md:left-6 md:right-6 z-20 flex items-center justify-center gap-2 px-4 py-3.5 text-white font-mono font-bold text-xs uppercase tracking-wider border-2 border-[#0A0A0A] shadow-brutal active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all cursor-pointer"
+            >
+              <Sparkles className="w-4 h-4 text-white" />
+              <span>{arConfig?.arButtonLabel || "[ PROIETTA NELLA STANZA // AR ]"}</span>
+            </button>
+          </model-viewer>
+        )}
+
+        {/* Selected Hotspot Material Spec Overlay Card */}
+        {selectedHotspot && (
+          <div className="absolute inset-x-3 bottom-16 sm:bottom-20 z-30 bg-[#FFFFFF] border-3 border-[#0A0A0A] p-4 shadow-brutal animate-in fade-in slide-in-from-bottom-2 duration-150">
+            <div className="flex items-start justify-between gap-3 border-b-2 border-[#0A0A0A] pb-2 mb-2">
+              <div>
+                <span 
+                  className="inline-block px-1.5 py-0.5 text-[9px] font-mono font-bold text-white uppercase tracking-widest mb-1"
+                  style={{ backgroundColor: accentColor }}
+                >
+                  {selectedHotspot.code}
+                </span>
+                <h4 className="font-mono font-bold text-sm text-[#0A0A0A] uppercase tracking-tight">
+                  {selectedHotspot.title}
+                </h4>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedHotspot(null)}
+                aria-label="Chiudi scheda materiale"
+                className="p-1 border-2 border-[#0A0A0A] bg-[#E5E5E0] hover:bg-[#D4D4CE] active:translate-x-[2px] active:translate-y-[2px] text-[#0A0A0A] transition-all"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            </div>
+            
+            <p className="font-mono text-xs text-[#0A0A0A] leading-relaxed">
+              {selectedHotspot.description}
+            </p>
+
+            <div className="mt-3 pt-2 border-t border-dashed border-[#0A0A0A]/40 flex items-center justify-between text-[10px] font-mono text-raw-muted">
+              <span>POS: {selectedHotspot.position}</span>
+              <span className="font-bold text-black uppercase">CAMPIONE MATERICO #0{selectedHotspot.id?.replace(/[^0-9]/g, '') || "1"}</span>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Instructions & Interaction Guide */}
+      <div className="bg-[#FFFFFF] border-2 border-[#0A0A0A] p-2.5 shadow-[2px_2px_0px_#0A0A0A]">
+        <div className="flex items-start gap-2">
+          <Layers className="w-3.5 h-3.5 text-[#0A0A0A] flex-shrink-0 mt-0.5" />
+          <p className="font-mono text-[10px] uppercase tracking-wide text-raw-muted leading-snug">
+            {arConfig?.instructions ||
+              "RUOTA IL MONOLITE O TOCCA I PUNTI PER ISPEZIONARE I MATERIALI. PREMI IL TASTO AR PER PROIETTARLO NELLO SPAZIO."}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
