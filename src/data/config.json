@@ -46,66 +46,6 @@
       }
     ]
   },
-  "arExperience": {
-    "enabled": true,
-    "sectionTitle": "01 // ARCHI-TETRIS AR",
-    "shortDescription": "Inquadra lo spazio reale e componi l'ambiente con i complementi d'arredo brutalisti I WAALDDEI.",
-    "openButtonLabel": "[ GIOCA ARCHI-TETRIS AR ]",
-    "closeButtonLabel": "[ X CHIUDI ]",
-    "instructions": "Inquadra la stanza o il tavolo con la fotocamera e incastra i complementi d'arredo brutalisti. Completa le campate per arredare i metri quadri.",
-    "gameTitle": "ARCHI-TETRIS // I WAALDDEI",
-    "pieces": [
-      {
-        "id": "I",
-        "name": "PANCA MONOLITICA",
-        "material": "Béton brut a cassaforma",
-        "color": "#D5D5D0",
-        "borderColor": "#111213"
-      },
-      {
-        "id": "O",
-        "name": "POLTRONA CUBICA",
-        "material": "Cuoio scuro & ferro grezzo",
-        "color": "#282A2D",
-        "borderColor": "#C85A17"
-      },
-      {
-        "id": "T",
-        "name": "TAVOLO A SBALZO",
-        "material": "Acciaio Corten ossidato",
-        "color": "#C85A17",
-        "borderColor": "#111213"
-      },
-      {
-        "id": "L",
-        "name": "CHAISE LONGUE",
-        "material": "Rovere massello affumicato",
-        "color": "#6E5B4B",
-        "borderColor": "#111213"
-      },
-      {
-        "id": "J",
-        "name": "LIBRERIA MODULARE",
-        "material": "Lamiera d'acciaio piegata",
-        "color": "#4A525A",
-        "borderColor": "#111213"
-      },
-      {
-        "id": "S",
-        "name": "CONSOLLE SOSPESA",
-        "material": "Microcemento antracite",
-        "color": "#3B424B",
-        "borderColor": "#111213"
-      },
-      {
-        "id": "Z",
-        "name": "DIVISORIO SCULTOREO",
-        "material": "Travertino grezzo a poro aperto",
-        "color": "#C5BCB2",
-        "borderColor": "#111213"
-      }
-    ]
-  },
   "footer": {
     "creditPrefix": "NFC ARTIFACT BY",
     "creditLogo": "/images/carminellolab-logo.jpg",
