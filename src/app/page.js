@@ -63,7 +63,7 @@ export default function DigitalBusinessCard() {
   const vcardLabel = contacts?.vcardLabel || "[ + SALVA IN RUBRICA ]";
 
   return (
-    <main className="relative min-h-screen w-full flex flex-col justify-between items-center py-4 px-3 sm:py-7 sm:px-4 overflow-x-hidden">
+    <main className="relative min-h-screen w-full flex flex-col justify-center items-center py-4 px-3 sm:py-7 sm:px-4 overflow-x-hidden">
       {/* ============================================================== */}
       {/* 0. ARCHITECTURAL SPACE BACKGROUND IMAGE & TRANSLUCENT SCRIM    */}
       {/* ============================================================== */}
@@ -170,30 +170,30 @@ export default function DigitalBusinessCard() {
           })}
         </div>
 
-      </div>
+        {/* ============================================================== */}
+        {/* 4. BANNER CON LOGO CARMINELLOLAB (SUBITO SOTTO LE FINESTRE)    */}
+        {/* ============================================================== */}
+        <footer className="w-full flex items-center justify-between font-mono text-[9px] sm:text-[10px] text-white/80 bg-black/45 backdrop-blur-2xl border border-white/15 rounded-2xl sm:rounded-3xl px-4 py-2.5 shadow-[0_8px_24px_rgba(0,0,0,0.45)]">
+          <span className="font-bold uppercase tracking-wider">
+            {brand?.name} © 2026
+          </span>
+          <a
+            href={footer?.creditUrl || "https://instagram.com/carminellolab"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 font-bold uppercase tracking-wider text-white hover:text-[#C85A17] transition-all group"
+          >
+            <span>{footer?.creditPrefix || "NFC ARTIFACT BY"}</span>
+            <img
+              src={footer?.creditLogo || "/images/carminellolab-logo.jpg"}
+              alt="Carminello Lab Logo"
+              className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border border-white/40 shadow-[0_0_8px_rgba(255,0,128,0.4)] object-cover group-hover:scale-110 group-hover:border-white transition-all"
+            />
+            <ArrowUpRight className="w-2.5 h-2.5 opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+          </a>
+        </footer>
 
-      {/* ============================================================== */}
-      {/* 4. FOOTER ARROTONDATO IN VETRO TRASLUCIDO: CARMINELLOLAB       */}
-      {/* ============================================================== */}
-      <footer className="relative z-10 w-full max-w-lg pt-2 mt-3 flex items-center justify-between font-mono text-[9px] sm:text-[10px] text-white/80 bg-black/45 backdrop-blur-2xl border border-white/15 rounded-2xl sm:rounded-3xl px-4 py-2.5 shadow-[0_8px_24px_rgba(0,0,0,0.45)]">
-        <span className="font-bold uppercase tracking-wider">
-          {brand?.name} © 2026
-        </span>
-        <a
-          href={footer?.creditUrl || "https://instagram.com/carminellolab"}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 font-bold uppercase tracking-wider text-white hover:text-[#C85A17] transition-all group"
-        >
-          <span>{footer?.creditPrefix || "NFC ARTIFACT BY"}</span>
-          <img
-            src={footer?.creditLogo || "/images/carminellolab-logo.jpg"}
-            alt="Carminello Lab Logo"
-            className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border border-white/40 shadow-[0_0_8px_rgba(255,0,128,0.4)] object-cover group-hover:scale-110 group-hover:border-white transition-all"
-          />
-          <ArrowUpRight className="w-2.5 h-2.5 opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-        </a>
-      </footer>
+      </div>
     </main>
   );
 }
