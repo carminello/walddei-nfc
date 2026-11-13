@@ -123,11 +123,11 @@ export default function HoloPlaque({ brand }) {
       onTouchMove={handlePointerMove}
     >
       {/* ============================================================= */}
-      {/* STATIONARY OUTER WINDOW: FIRM, SOLID & ROUNDED (DOES NOT MOVE)*/}
+      {/* STATIONARY OUTER WINDOW: FROSTED GLASS & HOLOGRAPHIC PRISM   */}
       {/* ============================================================= */}
       <div
         ref={plaqueRef}
-        className="relative w-full aspect-[16/9] min-h-[195px] sm:min-h-[225px] rounded-2xl sm:rounded-3xl overflow-hidden border-3 border-[#111213] bg-[#141517] shadow-[4px_4px_0px_#111213] flex flex-col items-center justify-center p-4 sm:p-5 group cursor-pointer"
+        className="relative w-full aspect-[16/9] min-h-[195px] sm:min-h-[225px] rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-white/25 bg-[#0C0E10]/80 backdrop-blur-2xl shadow-[0_16px_40px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.25)] flex flex-col items-center justify-center p-4 sm:p-5 group cursor-pointer transition-all duration-300 hover:border-white/40"
       >
         {/* ========================================================= */}
         {/* LAYER 1: REPEATING MINI-LOGOS PATTERN (MOVES WITH TILT)   */}

@@ -9,7 +9,7 @@
   },
   "contacts": {
     "vcardPath": "/walddei.vcf",
-    "vcardLabel": "[ + SALVA CONTATTO IN RUBRICA ]",
+    "vcardLabel": "[ + SALVA IN RUBRICA ]",
     "actions": [
       {
         "id": "whatsapp",
@@ -17,7 +17,7 @@
         "sublabel": "MESSAGGIO DIRETTO",
         "url": "https://wa.me/390289000000",
         "type": "primary",
-        "icon": "MessageSquare"
+        "icon": "MessageCircleMore"
       },
       {
         "id": "phone",
@@ -25,7 +25,7 @@
         "sublabel": "LINEA DIRETTA",
         "url": "tel:+390289000000",
         "type": "primary",
-        "icon": "Phone"
+        "icon": "PhoneCall"
       },
       {
         "id": "portfolio",
@@ -33,7 +33,7 @@
         "sublabel": "PROGETTI DIGITALI",
         "url": "https://walddei.com",
         "type": "secondary",
-        "icon": "Globe"
+        "icon": "LayoutGrid"
       },
       {
         "id": "instagram",
@@ -41,23 +41,7 @@
         "sublabel": "ARCHIVIO VISIVO",
         "url": "https://instagram.com/iwaalddei",
         "type": "secondary",
-        "icon": "Instagram"
-      },
-      {
-        "id": "email",
-        "label": "EMAIL",
-        "sublabel": "CONSULENZA",
-        "url": "mailto:studio@walddei.com",
-        "type": "secondary",
-        "icon": "Mail"
-      },
-      {
-        "id": "location",
-        "label": "ATELIER & MAP",
-        "sublabel": "VIA TORTONA 31",
-        "url": "https://maps.google.com/?q=Via+Tortona+Milano",
-        "type": "secondary",
-        "icon": "MapPin"
+        "icon": "Aperture"
       }
     ]
   },
