@@ -200,33 +200,36 @@ export default function HoloPlaque({ brand }) {
         />
 
         {/* ========================================================= */}
-        {/* LAYER 6: HERO OFFICIAL WAALDDEI LOGO + SECURITY SEAL      */}
+        {/* TOP-RIGHT SECURITY SEAL: ORIGINAL RESTYLING HOLOGRAM       */}
         {/* ========================================================= */}
-        <div className="relative z-20 flex flex-col items-center justify-center w-full max-w-[240px] sm:max-w-[280px] -mt-1 sm:-mt-2">
+        <div 
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full border border-white/80 bg-[#0B0C0E]/92 backdrop-blur-md shadow-[0_4px_16px_rgba(0,0,0,0.9),0_0_8px_rgba(255,255,255,0.3)] select-none whitespace-nowrap transition-transform duration-100"
+          style={{
+            transform: `translate(${(glare.x - 50) * 0.12}px, ${(glare.y - 50) * 0.1}px)`,
+          }}
+        >
+          <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#FFD700] flex-shrink-0 animate-pulse" />
+          <span className="font-mono font-black text-[8.5px] sm:text-[9.5px] uppercase tracking-[0.16em] text-white drop-shadow-[0_1px_3px_rgba(0,0,0,1)]">
+            ORIGINAL RESTYLING HOLOGRAM
+          </span>
+          <ShieldCheck className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#00F0FF] flex-shrink-0" />
+        </div>
+
+        {/* ========================================================= */}
+        {/* LAYER 6: HERO OFFICIAL WAALDDEI LOGO (ENLARGED & CENTERED)*/}
+        {/* ========================================================= */}
+        <div className="relative z-20 flex items-center justify-center w-full max-w-[200px] sm:max-w-[245px] px-2">
           {/* Official WAALDDEI Vector Logo */}
           <WaalddeiLogo
-            className="w-auto h-[68px] sm:h-[82px] max-w-[160px] sm:max-w-[200px] text-white select-none"
+            className="w-full h-auto max-h-[115px] sm:max-h-[140px] text-white select-none transition-transform duration-100"
             style={{
               filter: `
-                drop-shadow(0 2px 8px rgba(0, 0, 0, 0.95))
-                drop-shadow(0 0 16px rgba(255, 255, 255, 0.4))
+                drop-shadow(0 3px 10px rgba(0, 0, 0, 0.95))
+                drop-shadow(0 0 20px rgba(255, 255, 255, 0.45))
               `,
+              transform: `translate(${(glare.x - 50) * 0.08}px, ${(glare.y - 50) * 0.06}px)`,
             }}
           />
-
-          {/* Holographic Seal Badge: ORIGINAL RESTYLING HOLOGRAM (ELEVATED & HIGH-CONTRAST) */}
-          <div 
-            className="mt-2.5 sm:mt-3 flex items-center gap-1.5 px-3 py-1 rounded-full border border-white/80 bg-[#0B0C0E]/92 backdrop-blur-md shadow-[0_4px_16px_rgba(0,0,0,0.9),0_0_8px_rgba(255,255,255,0.3)] select-none transition-transform duration-100"
-            style={{
-              transform: `translate(${(glare.x - 50) * 0.1}px, ${(glare.y - 50) * 0.08}px)`,
-            }}
-          >
-            <Sparkles className="w-3 h-3 text-[#FFD700] flex-shrink-0 animate-pulse" />
-            <span className="font-mono font-black text-[9.5px] sm:text-[10.5px] uppercase tracking-[0.16em] text-white drop-shadow-[0_1px_3px_rgba(0,0,0,1)]">
-              ORIGINAL RESTYLING HOLOGRAM
-            </span>
-            <ShieldCheck className="w-3 h-3 text-[#00F0FF] flex-shrink-0" />
-          </div>
         </div>
 
       </div>
