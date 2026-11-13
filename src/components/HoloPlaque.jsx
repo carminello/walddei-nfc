@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import WaalddeiLogo from "./WaalddeiLogo";
 
 export default function HoloPlaque({ brand }) {
   const plaqueRef = useRef(null);
@@ -204,16 +204,13 @@ export default function HoloPlaque({ brand }) {
         {/* ========================================================= */}
         {/* LAYER 6: HERO OFFICIAL WAALDDEI LOGO (CENTERED & EMBOSSED)*/}
         {/* ========================================================= */}
-        <div className="relative z-20 flex items-center justify-center w-full max-w-[240px] sm:max-w-[280px]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/waalddei-logo.svg"
-            alt="I WAALDDEI Logo Ufficiale"
-            className="w-full h-auto object-contain select-none transition-transform duration-100"
+        <div className="relative z-20 flex items-center justify-center w-full max-w-[220px] sm:max-w-[260px]">
+          <WaalddeiLogo
+            className="w-full h-auto text-white select-none transition-transform duration-100"
             style={{
               filter: `
                 drop-shadow(0 2px 6px rgba(0, 0, 0, 0.95))
-                drop-shadow(0 0 14px rgba(255, 255, 255, 0.35))
+                drop-shadow(0 0 16px rgba(255, 255, 255, 0.4))
               `,
               transform: `scale(${1 + Math.abs(rot.x * 0.005) + Math.abs(rot.y * 0.005)})`,
             }}
