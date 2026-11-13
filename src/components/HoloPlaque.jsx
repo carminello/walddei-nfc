@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Sparkles, ShieldCheck, Cpu } from "lucide-react";
+import Image from "next/image";
 
 export default function HoloPlaque({ brand }) {
   const plaqueRef = useRef(null);
   const [rot, setRot] = useState({ x: 0, y: 0 });
-  const [glare, setGlare] = useState({ x: 50, y: 50, opacity: 0.75 });
+  const [glare, setGlare] = useState({ x: 50, y: 50, opacity: 0.85 });
   const [isPermissionRequested, setIsPermissionRequested] = useState(false);
   const accentColor = brand?.accentColor || "#C85A17";
 
@@ -19,15 +19,14 @@ export default function HoloPlaque({ brand }) {
     let currentY = 0;
 
     const handleOrientation = (e) => {
-      // gamma: Left to Right (-90 to 90)
-      // beta: Front to Back (-180 to 180, usually 30 to 60 when holding phone)
       if (e.gamma !== null && e.beta !== null) {
-        // Clamp and normalize
+        // gamma: Left to Right (-90 to 90)
+        // beta: Front to Back (-180 to 180, center ~45deg for normal phone hold)
         const g = Math.max(-45, Math.min(45, e.gamma));
-        const b = Math.max(15, Math.min(75, e.beta)) - 45; // center around 45deg standard reading angle
+        const b = Math.max(15, Math.min(75, e.beta)) - 45;
 
-        targetY = (g / 45) * 18;  // rotateY between -18deg and 18deg
-        targetX = -(b / 30) * 15; // rotateX between -15deg and 15deg
+        targetY = (g / 45) * 20;  // rotateY between -20deg and 20deg
+        targetX = -(b / 30) * 16; // rotateX between -16deg and 16deg
 
         const glarePosX = Math.max(0, Math.min(100, 50 + (g / 45) * 45));
         const glarePosY = Math.max(0, Math.min(100, 50 + (b / 30) * 45));
@@ -35,7 +34,7 @@ export default function HoloPlaque({ brand }) {
         setGlare({
           x: glarePosX,
           y: glarePosY,
-          opacity: 0.85
+          opacity: 0.95,
         });
       }
     };
@@ -47,7 +46,7 @@ export default function HoloPlaque({ brand }) {
 
       setRot({
         x: parseFloat(currentX.toFixed(2)),
-        y: parseFloat(currentY.toFixed(2))
+        y: parseFloat(currentY.toFixed(2)),
       });
 
       animFrame = requestAnimationFrame(loop);
@@ -76,20 +75,20 @@ export default function HoloPlaque({ brand }) {
     const relX = (clientX - rect.left) / rect.width;
     const relY = (clientY - rect.top) / rect.height;
 
-    const rotY = (relX - 0.5) * 22; // rotate along Y axis
+    const rotY = (relX - 0.5) * 24; // rotate along Y axis
     const rotX = (relY - 0.5) * -18; // rotate along X axis
 
     setRot({ x: rotX, y: rotY });
     setGlare({
       x: relX * 100,
       y: relY * 100,
-      opacity: 0.95
+      opacity: 1,
     });
   };
 
   const handlePointerLeave = () => {
     setRot({ x: 0, y: 0 });
-    setGlare({ x: 50, y: 50, opacity: 0.65 });
+    setGlare({ x: 50, y: 50, opacity: 0.75 });
   };
 
   // 3. iOS DeviceOrientation Permission Request on Tap
@@ -111,161 +110,116 @@ export default function HoloPlaque({ brand }) {
     }
   };
 
-  // Dynamic prismatic angle based on rotation
+  // Dynamic prismatic angle shifting with physical tilt
   const holoAngle = 120 + rot.y * 3.5 + rot.x * 2;
 
   return (
     <div 
-      className="w-full perspective-[800px] select-none"
+      className="w-full perspective-[900px] select-none"
       onClick={requestGyroPermission}
       onMouseMove={handlePointerMove}
       onMouseLeave={handlePointerLeave}
       onTouchMove={handlePointerMove}
     >
-      {/* Physical 3D Holographic Plaque Frame */}
+      {/* Physical 3D Holographic Plaque Frame with Rounded Corners */}
       <div
         ref={plaqueRef}
         style={{
-          transform: `perspective(800px) rotateX(${rot.x}deg) rotateY(${rot.y}deg)`,
+          transform: `perspective(900px) rotateX(${rot.x}deg) rotateY(${rot.y}deg)`,
           transition: "transform 0.08s ease-out, box-shadow 0.08s ease-out",
-          boxShadow: `${-rot.y * 0.7 + 4}px ${rot.x * 0.7 + 4}px 0px #111213`,
+          boxShadow: `${-rot.y * 0.7 + 4}px ${rot.x * 0.7 + 5}px 0px #111213`,
         }}
-        className="relative w-full overflow-hidden border-3 border-[#111213] bg-[#1A1C1E] p-4 sm:p-5 group cursor-pointer"
+        className="relative w-full aspect-[16/9] min-h-[190px] sm:min-h-[220px] rounded-2xl sm:rounded-3xl overflow-hidden border-3 border-[#111213] bg-[#141517] flex items-center justify-center p-6 group cursor-pointer"
       >
         {/* ========================================================= */}
-        {/* HOLOGRAPHIC OPTICAL LAYERS                                */}
+        {/* LAYER 1: REPEATING MINI-LOGOS SECURITY PATTERN (WATERMARK) */}
         {/* ========================================================= */}
-
-        {/* Layer A: Holographic Rainbow Prismatic Foil Refraction */}
         <div
-          className="absolute inset-0 pointer-events-none mix-blend-color-dodge transition-opacity duration-300"
+          className="absolute inset-0 pointer-events-none opacity-25 mix-blend-screen transition-opacity duration-300"
+          style={{
+            backgroundImage: `url('/images/waalddei-logo.svg')`,
+            backgroundSize: "44px 34px",
+            backgroundRepeat: "repeat",
+            backgroundPosition: `${rot.y * 0.6}px ${rot.x * 0.6}px`,
+          }}
+        />
+
+        {/* ========================================================= */}
+        {/* LAYER 2: RAINBOW PRISMATIC SPECTRAL FOIL REFRACTION       */}
+        {/* ========================================================= */}
+        <div
+          className="absolute inset-0 pointer-events-none mix-blend-color-dodge transition-opacity duration-200"
           style={{
             opacity: glare.opacity,
             background: `linear-gradient(${holoAngle}deg, 
-              rgba(255, 0, 128, 0.35) 0%, 
-              rgba(0, 240, 255, 0.45) 22%, 
-              rgba(255, 220, 0, 0.5) 45%, 
-              rgba(0, 255, 136, 0.45) 68%, 
-              rgba(180, 0, 255, 0.4) 88%,
-              rgba(255, 0, 128, 0.35) 100%)`,
+              rgba(255, 0, 128, 0.45) 0%, 
+              rgba(0, 240, 255, 0.55) 20%, 
+              rgba(255, 220, 0, 0.6) 40%, 
+              rgba(0, 255, 136, 0.55) 60%, 
+              rgba(180, 0, 255, 0.5) 80%,
+              rgba(255, 0, 128, 0.45) 100%)`,
           }}
         />
 
-        {/* Layer B: Dynamic Specular Reflection Hotspot / Glare */}
+        {/* ========================================================= */}
+        {/* LAYER 3: SECONDARY DENSE MINI-LOGO HOLOGRAPHIC FOIL       */}
+        {/* ========================================================= */}
         <div
-          className="absolute inset-0 pointer-events-none mix-blend-overlay transition-opacity duration-200"
+          className="absolute inset-0 pointer-events-none opacity-35 mix-blend-overlay"
+          style={{
+            backgroundImage: `url('/images/waalddei-logo.svg')`,
+            backgroundSize: "32px 25px",
+            backgroundRepeat: "repeat",
+            backgroundPosition: `${-rot.y * 0.8}px ${-rot.x * 0.8}px`,
+          }}
+        />
+
+        {/* ========================================================= */}
+        {/* LAYER 4: DYNAMIC SPECULAR REFLECTION GLARE SPOTLIGHT      */}
+        {/* ========================================================= */}
+        <div
+          className="absolute inset-0 pointer-events-none mix-blend-overlay transition-opacity duration-150"
           style={{
             background: `radial-gradient(circle 280px at ${glare.x}% ${glare.y}%, 
-              rgba(255, 255, 255, 0.9) 0%, 
-              rgba(255, 245, 230, 0.45) 35%, 
-              rgba(200, 90, 23, 0.15) 60%,
-              transparent 85%)`,
+              rgba(255, 255, 255, 0.95) 0%, 
+              rgba(255, 240, 220, 0.55) 30%, 
+              rgba(200, 90, 23, 0.25) 55%,
+              transparent 80%)`,
           }}
         />
 
-        {/* Layer C: Physical Security Micro-Grating & Scanlines */}
+        {/* ========================================================= */}
+        {/* LAYER 5: PHYSICAL SECURITY MICRO-DIFFRACTION SCANLINES    */}
         <div
-          className="absolute inset-0 pointer-events-none opacity-30 mix-blend-soft-light"
+          className="absolute inset-0 pointer-events-none opacity-25 mix-blend-soft-light"
           style={{
             backgroundImage: `repeating-linear-gradient(135deg, 
-              rgba(255, 255, 255, 0.12) 0px, 
-              rgba(255, 255, 255, 0.12) 1px, 
+              rgba(255, 255, 255, 0.15) 0px, 
+              rgba(255, 255, 255, 0.15) 1px, 
               transparent 1px, 
               transparent 3px)`,
           }}
         />
 
-        {/* Layer D: Brushed Titanium Base Sheen */}
-        <div 
-          className="absolute inset-0 pointer-events-none opacity-15"
-          style={{
-            background: "linear-gradient(to right, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.4) 50%, rgba(255,255,255,0.08) 100%)",
-          }}
-        />
-
-        {/* Corner Precision Registration Crosshairs (+) */}
-        <span className="absolute top-1.5 left-2 font-mono text-[10px] text-white/50 font-bold select-none">+</span>
-        <span className="absolute top-1.5 right-2 font-mono text-[10px] text-white/50 font-bold select-none">+</span>
-        <span className="absolute bottom-1.5 left-2 font-mono text-[10px] text-white/50 font-bold select-none">+</span>
-        <span className="absolute bottom-1.5 right-2 font-mono text-[10px] text-white/50 font-bold select-none">+</span>
-
         {/* ========================================================= */}
-        {/* PLAQUE CONTENT (TACTILE MONUMENTAL ENGRAVING)            */}
+        {/* LAYER 6: HERO OFFICIAL WAALDDEI LOGO (CENTERED & EMBOSSED)*/}
         {/* ========================================================= */}
-        <div className="relative z-10 flex flex-col gap-2">
-          
-          {/* Top Status Stripe */}
-          <div className="flex items-center justify-between border-b border-white/20 pb-2">
-            <div className="flex items-center gap-1.5 font-mono text-[9px] sm:text-[10px] font-bold text-white tracking-widest uppercase">
-              <span 
-                className="w-2.5 h-2.5 border border-white flex-shrink-0 animate-pulse shadow-[0_0_8px_rgba(200,90,23,0.8)]"
-                style={{ backgroundColor: accentColor }}
-              />
-              <span className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
-                {brand?.badge || "CERTIFIED PHYSICAL NFC PLAQUE // ED. 2026"}
-              </span>
-            </div>
-
-            <div className="flex items-center gap-1 text-white/80 font-mono text-[9px] sm:text-[10px] font-bold tracking-wider uppercase">
-              <Sparkles className="w-3 h-3 text-[#FFD700] animate-spin" style={{ animationDuration: "12s" }} />
-              <span>{brand?.location || "MILANO // ZÜRICH"}</span>
-            </div>
-          </div>
-
-          {/* Monumental Holographic Identity: I WAALDDEI */}
-          <div className="pt-1.5 pb-0.5">
-            <div className="flex items-baseline justify-between gap-2">
-              <h1 
-                className="font-sans font-black text-4xl sm:text-5xl md:text-6xl tracking-[-0.05em] uppercase text-white leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]"
-                style={{
-                  textShadow: `
-                    0 1px 0 rgba(255,255,255,0.4),
-                    0 2px 0 rgba(0,0,0,0.9),
-                    0 0 16px rgba(255,255,255,0.2)
-                  `,
-                }}
-              >
-                {brand?.name || "I WAALDDEI"}
-              </h1>
-
-              {/* Holographic Chip Indicator */}
-              <div className="hidden sm:flex items-center gap-1 px-2 py-0.5 border border-white/30 bg-black/40 backdrop-blur-sm text-[9px] font-mono font-bold text-white uppercase tracking-wider">
-                <Cpu className="w-3 h-3 text-[#00F0FF]" />
-                <span>NFC LIVE</span>
-              </div>
-            </div>
-
-            {/* Subtitle / Studio Discipline */}
-            <div className="flex items-center gap-2 mt-2">
-              <div 
-                className="h-1.5 w-10 flex-shrink-0 shadow-[0_0_10px_rgba(200,90,23,0.9)]" 
-                style={{ backgroundColor: accentColor }} 
-              />
-              <p className="font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-white/95 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
-                {brand?.tagline || "INTERIOR ARCHITECTURE // BÉTON BRUT & RAW STEEL"}
-              </p>
-            </div>
-          </div>
-
-          {/* Studio Manifesto / Structural Philosophy */}
-          {brand?.manifesto && (
-            <p className="font-mono text-[10px] sm:text-[11px] text-white/85 leading-relaxed border-t border-white/20 pt-2 mt-1 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] line-clamp-2">
-              {brand.manifesto}
-            </p>
-          )}
-
-          {/* Micro-Engraved Security Watermark Footer */}
-          <div className="flex items-center justify-between pt-1 border-t border-dashed border-white/20 text-[8px] sm:text-[9px] font-mono text-white/60 uppercase tracking-widest">
-            <span className="flex items-center gap-1">
-              <ShieldCheck className="w-3 h-3 text-[#00FF88]" />
-              <span>HOLO SPECIMEN // GENUINE HARDWARE</span>
-            </span>
-            <span className="font-bold text-white/80">
-              GYRO-ACTIVE 3D
-            </span>
-          </div>
-
+        <div className="relative z-20 flex items-center justify-center w-full max-w-[240px] sm:max-w-[280px]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/waalddei-logo.svg"
+            alt="I WAALDDEI Logo Ufficiale"
+            className="w-full h-auto object-contain select-none transition-transform duration-100"
+            style={{
+              filter: `
+                drop-shadow(0 2px 6px rgba(0, 0, 0, 0.95))
+                drop-shadow(0 0 14px rgba(255, 255, 255, 0.35))
+              `,
+              transform: `scale(${1 + Math.abs(rot.x * 0.005) + Math.abs(rot.y * 0.005)})`,
+            }}
+          />
         </div>
+
       </div>
     </div>
   );
