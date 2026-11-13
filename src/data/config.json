@@ -29,12 +29,12 @@
         "icon": "PhoneCall"
       },
       {
-        "id": "portfolio",
-        "label": "PORTFOLIO",
-        "sublabel": "PROGETTI DIGITALI",
+        "id": "website",
+        "label": "SITO WEB",
+        "sublabel": "WALDDEI.COM",
         "url": "https://walddei.com",
         "type": "secondary",
-        "icon": "LayoutGrid"
+        "icon": "Globe"
       },
       {
         "id": "instagram",

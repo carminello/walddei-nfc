@@ -7,6 +7,7 @@ import ArViewer from "@/components/ArViewer";
 import {
   MessageCircleMore,
   PhoneCall,
+  Globe,
   LayoutGrid,
   Aperture,
   ArrowUpRight,
@@ -34,7 +35,14 @@ function renderActionIcon(actionId, iconName, customClass = "w-4 h-4") {
         "border-white/30 bg-white/10 text-white group-hover:bg-white group-hover:text-black group-hover:border-white",
     };
   }
-  if (norm.includes("portf") || norm.includes("grid") || norm.includes("glob")) {
+  if (norm.includes("web") || norm.includes("site") || norm.includes("glob")) {
+    return {
+      icon: <Globe className={customClass} />,
+      badgeClass:
+        "border-[#00F0FF]/40 bg-[#00F0FF]/15 text-[#00F0FF] group-hover:bg-[#00F0FF] group-hover:text-black group-hover:border-[#00F0FF]",
+    };
+  }
+  if (norm.includes("portf") || norm.includes("grid")) {
     return {
       icon: <LayoutGrid className={customClass} />,
       badgeClass:
@@ -70,7 +78,7 @@ export default function DigitalBusinessCard() {
 
   // Symmetrical 50/50 split (3 elements left, 3 elements right)
   const leftChannelIds = ["whatsapp", "phone"];
-  const rightChannelIds = ["portfolio", "instagram"];
+  const rightChannelIds = ["website", "site", "instagram", "portfolio"];
 
   const leftActions = contactActions.filter(
     (a) => leftChannelIds.includes(a.id?.toLowerCase()) || a.type === "primary"
