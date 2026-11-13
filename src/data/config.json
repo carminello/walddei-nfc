@@ -63,41 +63,61 @@
   },
   "arExperience": {
     "enabled": true,
-    "sectionTitle": "01 // PORTALE ARCHITETTONICO 3D",
-    "shortDescription": "Simulatore di luce e scultura spaziale: esplora i volumi in calcestruzzo e acciaio corten attraverso le fasi del sole.",
-    "openButtonLabel": "[ APRI PORTALE MATERICO 3D ]",
+    "sectionTitle": "01 // ARCHI-TETRIS AR",
+    "shortDescription": "Inquadra lo spazio reale e componi l'ambiente con i complementi d'arredo brutalisti I WAALDDEI.",
+    "openButtonLabel": "[ GIOCA ARCHI-TETRIS AR ]",
     "closeButtonLabel": "[ X CHIUDI ]",
-    "instructions": "RUOTA LA SCULTURA A 360° E CAMBIA L'ANGOLO DELLA LUCE SOLARE (ALBA / MEZZOGIORNO / TRAMONTO / NOTTE) PER OSSERVARE LE OMBRE SUI MATERIALI.",
-    "modelPath": "/models/walddei-monolith.glb",
-    "posterPath": "/images/monolith-poster.png",
-    "arButtonLabel": "[ ESPLORA VOLUMI ARCHITETTONICI ]",
-    "hotspots": [
+    "instructions": "Inquadra la stanza o il tavolo con la fotocamera e incastra i complementi d'arredo brutalisti. Completa le campate per arredare i metri quadri.",
+    "gameTitle": "ARCHI-TETRIS // I WAALDDEI",
+    "pieces": [
       {
-        "id": "hotspot-1",
-        "slot": "hotspot-1",
-        "position": "0.0m 0.15m 0.11m",
-        "normal": "0m 0m 1m",
-        "code": "MAT // 01",
-        "title": "LAMA IN ACCIAIO CORTEN",
-        "description": "Lama centrale strutturale a taglio netto con ossidazione naturale e sigillatura a cera microcristallina."
+        "id": "I",
+        "name": "PANCA MONOLITICA",
+        "material": "Béton brut a cassaforma",
+        "color": "#D5D5D0",
+        "borderColor": "#111213"
       },
       {
-        "id": "hotspot-2",
-        "slot": "hotspot-2",
-        "position": "-0.24m 0.20m 0.10m",
-        "normal": "0m 0m 1m",
-        "code": "MAT // 02",
-        "title": "BÉTON BRUT A CASSAFORMA",
-        "description": "Calcestruzzo strutturale colato a vista in casseforme di doghe di rovere naturale. Spigoli vivi brutalisti."
+        "id": "O",
+        "name": "POLTRONA CUBICA",
+        "material": "Cuoio scuro & ferro grezzo",
+        "color": "#282A2D",
+        "borderColor": "#C85A17"
       },
       {
-        "id": "hotspot-3",
-        "slot": "hotspot-3",
-        "position": "0.0m -0.34m 0.22m",
-        "normal": "0m 1m 0m",
-        "code": "MAT // 03",
-        "title": "PLINTO A GRADONI RETTIFICATI",
-        "description": "Basamento minerale a blocchi massicci ad alta densità con ombre d'appoggio nette e profonde."
+        "id": "T",
+        "name": "TAVOLO A SBALZO",
+        "material": "Acciaio Corten ossidato",
+        "color": "#C85A17",
+        "borderColor": "#111213"
+      },
+      {
+        "id": "L",
+        "name": "CHAISE LONGUE",
+        "material": "Rovere massello affumicato",
+        "color": "#6E5B4B",
+        "borderColor": "#111213"
+      },
+      {
+        "id": "J",
+        "name": "LIBRERIA MODULARE",
+        "material": "Lamiera d'acciaio piegata",
+        "color": "#4A525A",
+        "borderColor": "#111213"
+      },
+      {
+        "id": "S",
+        "name": "CONSOLLE SOSPESA",
+        "material": "Microcemento antracite",
+        "color": "#3B424B",
+        "borderColor": "#111213"
+      },
+      {
+        "id": "Z",
+        "name": "DIVISORIO SCULTOREO",
+        "material": "Travertino grezzo a poro aperto",
+        "color": "#C5BCB2",
+        "borderColor": "#111213"
       }
     ]
   },

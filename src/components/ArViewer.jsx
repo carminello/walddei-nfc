@@ -1,11 +1,11 @@
 "use client";
 
-import SpatialArtifactViewer from "./SpatialArtifactViewer";
+import ArchiTetris from "./ArchiTetris";
 
 export default function ArViewer({ arConfig, brandConfig, onClose }) {
   return (
     <div className="w-full">
-      <SpatialArtifactViewer
+      <ArchiTetris
         arConfig={arConfig}
         brandConfig={brandConfig}
         onClose={onClose}

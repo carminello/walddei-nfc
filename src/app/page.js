@@ -17,6 +17,7 @@ import {
   X,
   UserPlus,
   Layers,
+  Gamepad2,
 } from "lucide-react";
 
 // Robust dynamic icon resolver
@@ -182,9 +183,9 @@ export default function DigitalBusinessCard() {
               <div className="w-full flex flex-col justify-between p-3 sm:p-3.5 bg-[#F4F5F4]/95 backdrop-blur-md border-2 sm:border-3 border-[#111213] shadow-[3px_3px_0px_#111213] transition-all">
                 <div className="flex items-center justify-between border-b border-[#111213]/20 pb-1.5 mb-2">
                   <div className="flex items-center gap-1">
-                    <Box className="w-3.5 h-3.5 text-[#111213]" />
+                    <Gamepad2 className="w-3.5 h-3.5 text-[#C85A17]" />
                     <span className="font-mono font-bold text-[9px] sm:text-[10px] uppercase tracking-wider text-[#111213] truncate">
-                      {arExperience?.sectionTitle || "01 // MATERIOTECA 3D"}
+                      {arExperience?.sectionTitle || "01 // ARCHI-TETRIS AR"}
                     </span>
                   </div>
                   <span 
@@ -263,25 +264,25 @@ export default function DigitalBusinessCard() {
       </footer>
 
       {/* ============================================================== */}
-      {/* MODAL FULL-SCREEN BRUTALISTA PER WEBAR                         */}
+      {/* MODAL BRUTALISTA PER ARCHI-TETRIS WEBAR                      */}
       {/* ============================================================== */}
       {isArModalOpen && (
         <div 
-          className="fixed inset-0 z-50 bg-[#111213]/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-5 overflow-y-auto"
+          className="fixed inset-0 z-50 bg-[#111213]/90 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 overflow-y-auto"
           onClick={(e) => {
             if (e.target === e.currentTarget) setIsArModalOpen(false);
           }}
         >
-          <div className="relative w-full max-w-lg bg-[#EBECE9] border-3 border-[#111213] shadow-[8px_8px_0px_#111213] p-4 flex flex-col gap-3 my-auto max-h-[96vh] overflow-y-auto">
+          <div className="relative w-full max-w-md bg-[#111213] border-3 border-[#C85A17] shadow-[8px_8px_0px_#000000] p-2.5 sm:p-3 flex flex-col gap-2 my-auto max-h-[98vh] overflow-y-auto">
             {/* Modal Top Bar */}
-            <div className="flex items-center justify-between border-b-2 border-[#111213] pb-2">
+            <div className="flex items-center justify-between border-b-2 border-white/20 pb-2">
               <div className="flex items-center gap-2">
                 <div 
-                  className="w-3 h-3 border border-[#111213]" 
+                  className="w-3 h-3 border border-white" 
                   style={{ backgroundColor: accentColor }} 
                 />
-                <h3 className="font-mono font-bold text-xs uppercase tracking-widest text-[#111213]">
-                  {arExperience?.sectionTitle || "01 // ARCHITETTURA MATERICA & AR"}
+                <h3 className="font-mono font-bold text-xs uppercase tracking-widest text-white">
+                  {arExperience?.sectionTitle || "01 // ARCHI-TETRIS AR"}
                 </h3>
               </div>
 
@@ -289,10 +290,10 @@ export default function DigitalBusinessCard() {
               <button
                 type="button"
                 onClick={() => setIsArModalOpen(false)}
-                aria-label="Chiudi finestra 3D"
-                className="flex items-center gap-1 px-3 py-1.5 bg-[#111213] hover:bg-[#C85A17] text-white border-2 border-[#111213] font-mono font-bold text-[11px] uppercase tracking-wider shadow-[2px_2px_0px_#FFFFFF] active:translate-x-[2px] active:translate-y-[2px] transition-all cursor-pointer"
+                aria-label="Chiudi finestra gioco"
+                className="flex items-center gap-1 px-2.5 py-1 bg-white hover:bg-[#C85A17] text-black hover:text-white border-2 border-white font-mono font-bold text-[10px] uppercase tracking-wider shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] transition-all cursor-pointer"
               >
-                <X className="w-3.5 h-3.5" />
+                <X className="w-3 h-3" />
                 <span>{arExperience?.closeButtonLabel || "[ X CHIUDI ]"}</span>
               </button>
             </div>
