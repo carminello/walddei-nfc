@@ -63,52 +63,50 @@
   },
   "arExperience": {
     "enabled": true,
-    "sectionTitle": "01 // MATRIX AR EXPERIENCE",
-    "shortDescription": "Attiva lo scanner Matrix fotocamera: inquadra la stanza e ancora il sigillo olografico I WAALDDEI nello spazio.",
-    "openButtonLabel": "[ AVVIA MATRIX AR ]",
+    "sectionTitle": "01 // INTERIOR STAGING // AR",
+    "shortDescription": "Inquadra la stanza e posiziona gli arredi scultorei I WAALDDEI in scala 1:1 nel tuo spazio con rilievo metrico.",
+    "openButtonLabel": "[ APRI INTERIOR STAGING AR ]",
     "closeButtonLabel": "[ X CHIUDI ]",
-    "matrixTitle": "I WAALDDEI // MATRIX SPATIAL AR",
-    "matrixSubtitle": "HOLOGRAPHIC SPATIAL PROJECTION",
-    "instructions": "INQUADRA LA STANZA O RUOTA IL TOTEM: TOCCA LO SCHERMO PER ANCORARE L'HOLOTAG I WAALDDEI NELLO SPAZIO.",
+    "instructions": "INQUADRA LA STANZA O RUOTA L'ARREDO: TOCCA IL PAVIMENTO PER COLLOCARE IL TAVOLO D'AUTORE IN SCALA 1:1.",
     "modelPath": "/models/walddei-monolith.glb",
     "posterPath": "/images/monolith-poster.png",
-    "arButtonLabel": "[ PROIETTA NELLO SPAZIO // AR ]",
+    "arButtonLabel": "[ PROIETTA IN SALOTTO IN SCALA 1:1 // AR ]",
     "hotspots": [
       {
         "id": "hotspot-1",
         "slot": "hotspot-1",
-        "position": "0.0m 0.15m 0.01m",
-        "normal": "0m 0m 1m",
+        "position": "0.35m 0.35m 0.15m",
+        "normal": "0m 1m 0m",
         "code": "MAT // 01",
-        "title": "CRISTALLO ARCHITETTONICO",
-        "description": "Lastra ultrasottile in titanio ossidiano con finitura satinata e trattamento antiriflesso."
+        "title": "BÉTON BRUT A CASSAFORMA",
+        "description": "Piano a sbalzo in calcestruzzo massiccio con casseratura a doghe di legno naturale a vista e spigoli vivi."
       },
       {
         "id": "hotspot-2",
         "slot": "hotspot-2",
-        "position": "-0.14m 0.18m 0.015m",
-        "normal": "0m 0m 1m",
+        "position": "0.36m 0.15m 0.15m",
+        "normal": "1m 0m 0m",
         "code": "MAT // 02",
-        "title": "INNESTO BOTANICO VIVO",
-        "description": "Dettaglio botanico a foglie naturali stabilizzate integrato con profilo ad incastro."
+        "title": "ACCIAIO CORTEN OSSIDATO",
+        "description": "Setto portante asimmetrico e vasca fioriera a filo in acciaio ossidato e sigillato a cera naturale."
       },
       {
         "id": "hotspot-3",
         "slot": "hotspot-3",
-        "position": "0.14m -0.19m 0.015m",
-        "normal": "0m 0m 1m",
+        "position": "0.0m 0.11m 0.0m",
+        "normal": "0m 1m 0m",
         "code": "MAT // 03",
-        "title": "BORDO IN ACCIAIO CORTEN",
-        "description": "Profilo perimetrale di precisione in metallo brunito ossidato a caldo."
+        "title": "ROVERE SCURO BRUCIATO",
+        "description": "Trave strutturale orizzontale di collegamento in legno massello termotrattato a fiamma secondo tecnica Yakisugi."
       },
       {
         "id": "hotspot-4",
         "slot": "hotspot-4",
-        "position": "0.0m -0.05m 0.01m",
-        "normal": "0m 0m 1m",
+        "position": "0.0m 0.42m 0.0m",
+        "normal": "0m 1m 0m",
         "code": "MAT // 04",
-        "title": "HOLOGRAM CORE",
-        "description": "Emettitore di diffrazione ottica per proiezione aumentata in realtà mista."
+        "title": "VEGETAZIONE DA INTERNO",
+        "description": "Inserto botanico integrato a scomparsa con cuscino verde vivo che instaura un dialogo biofilico con la pietra."
       }
     ]
   },

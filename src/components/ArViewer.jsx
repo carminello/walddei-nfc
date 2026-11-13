@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import MatrixArScanner from "./MatrixArScanner";
+import BrutalistInteriorAr from "./BrutalistInteriorAr";
 import { 
   Eye, 
   EyeOff, 
@@ -11,12 +11,12 @@ import {
   RotateCcw, 
   Layers, 
   AlertCircle,
-  Scan,
-  Camera
+  Camera,
+  Maximize2
 } from "lucide-react";
 
 export default function ArViewer({ arConfig, brandConfig, onClose }) {
-  const [activeMode, setActiveMode] = useState("matrix"); // "matrix" | "3d"
+  const [activeMode, setActiveMode] = useState("staging"); // "staging" | "3d"
   const [isViewerLoaded, setIsViewerLoaded] = useState(false);
   const [selectedHotspot, setSelectedHotspot] = useState(null);
   const [showHotspots, setShowHotspots] = useState(true);
@@ -79,7 +79,7 @@ export default function ArViewer({ arConfig, brandConfig, onClose }) {
 
   const resetCamera = () => {
     if (viewerRef.current) {
-      viewerRef.current.cameraOrbit = "0deg 75deg 105%";
+      viewerRef.current.cameraOrbit = "45deg 65deg 105%";
       viewerRef.current.cameraTarget = "auto auto auto";
       viewerRef.current.fieldOfView = "auto";
     }
@@ -88,35 +88,35 @@ export default function ArViewer({ arConfig, brandConfig, onClose }) {
   return (
     <div className="w-full flex flex-col gap-2.5">
       
-      {/* Top Mode Selector Tabs (Brutalist Architecture Navigation) */}
+      {/* Top Mode Selector Tabs (Architectural Interior Navigation) */}
       <div className="flex items-center justify-between gap-1.5 border-b-2 border-[#111213] pb-2">
         <div className="flex items-center gap-1.5 overflow-x-auto py-0.5">
-          {/* Tab 1: Matrix Camera AR */}
+          {/* Tab 1: Virtual Interior Staging AR */}
           <button
             type="button"
-            onClick={() => setActiveMode("matrix")}
-            className={`flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono font-bold uppercase tracking-wider border-2 border-[#111213] transition-all ${
-              activeMode === "matrix"
-                ? "bg-[#111213] text-[#00FF66] shadow-[2px_2px_0px_#00FF66]"
+            onClick={() => setActiveMode("staging")}
+            className={`flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono font-bold uppercase tracking-wider border-2 border-[#111213] transition-all cursor-pointer ${
+              activeMode === "staging"
+                ? "bg-[#111213] text-white shadow-[2px_2px_0px_#C85A17]"
                 : "bg-[#FFFFFF] text-[#111213] hover:bg-[#EBECE9]"
             }`}
           >
-            <Scan className="w-3 h-3 text-[#00FF66]" />
-            <span>01 // MATRIX CAMERA</span>
+            <Camera className="w-3 h-3 text-[#C85A17]" />
+            <span>01 // INTERIOR STAGING AR</span>
           </button>
 
-          {/* Tab 2: 3D Materioteca GLB */}
+          {/* Tab 2: 3D Furniture Inspection */}
           <button
             type="button"
             onClick={() => setActiveMode("3d")}
-            className={`flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono font-bold uppercase tracking-wider border-2 border-[#111213] transition-all ${
+            className={`flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono font-bold uppercase tracking-wider border-2 border-[#111213] transition-all cursor-pointer ${
               activeMode === "3d"
                 ? "bg-[#111213] text-white shadow-[2px_2px_0px_#FFFFFF]"
                 : "bg-[#FFFFFF] text-[#111213] hover:bg-[#EBECE9]"
             }`}
           >
             <Box className="w-3 h-3" style={{ color: accentColor }} />
-            <span>02 // MATERIOTECA 3D</span>
+            <span>02 // ARREDO D'AUTORE 3D</span>
           </button>
         </div>
 
@@ -125,7 +125,7 @@ export default function ArViewer({ arConfig, brandConfig, onClose }) {
           <button
             type="button"
             onClick={onClose}
-            className="flex items-center gap-1 bg-[#111213] hover:bg-[#C85A17] text-white px-2 py-1 text-[10px] font-mono font-bold uppercase tracking-wider border border-[#111213] transition-colors flex-shrink-0"
+            className="flex items-center gap-1 bg-[#111213] hover:bg-[#C85A17] text-white px-2 py-1 text-[10px] font-mono font-bold uppercase tracking-wider border border-[#111213] transition-colors flex-shrink-0 cursor-pointer"
           >
             <X className="w-3 h-3" />
             <span className="hidden sm:inline">CHIUDI</span>
@@ -134,18 +134,18 @@ export default function ArViewer({ arConfig, brandConfig, onClose }) {
       </div>
 
       {/* VIEWPORT BODY */}
-      {activeMode === "matrix" ? (
+      {activeMode === "staging" ? (
         /* ============================================================ */
-        /* MODE 1: MATRIX SPATIAL CAMERA AR SCANNER                     */
+        /* MODE 1: BRUTALIST INTERIOR STAGING AR (ROOM CAMERA)          */
         /* ============================================================ */
-        <MatrixArScanner
+        <BrutalistInteriorAr
           arConfig={arConfig}
           brandConfig={brandConfig}
           onSwitchToViewer={() => setActiveMode("3d")}
         />
       ) : (
         /* ============================================================ */
-        /* MODE 2: 3D MODEL VIEWER + NATIVE WEBAR PROJECTION            */
+        /* MODE 2: 3D MODEL VIEWER + NATIVE 1:1 WEBAR PROJECTION         */
         /* ============================================================ */
         <div className="w-full flex flex-col gap-2.5">
           {/* Main 3D Container with Brutalist 3px Border */}
@@ -165,7 +165,7 @@ export default function ArViewer({ arConfig, brandConfig, onClose }) {
                     style={{ backgroundColor: accentColor }}
                   />
                 </span>
-                <span>TOTEM OLOGRAFICO 3D</span>
+                <span>TAVOLO BASSO 'MONOLITH' // 3D</span>
               </div>
 
               {/* Quick Controls: Toggle Hotspots & Reset Camera */}
@@ -174,7 +174,7 @@ export default function ArViewer({ arConfig, brandConfig, onClose }) {
                   type="button"
                   onClick={() => setShowHotspots((prev) => !prev)}
                   aria-label="Mostra o nascondi punti materici"
-                  className="flex items-center gap-1 bg-[#FFFFFF] hover:bg-[#F4F4F0] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none text-[#111213] border-2 border-[#111213] px-2 py-1 text-[10px] font-mono font-bold uppercase tracking-wider shadow-[2px_2px_0px_#111213] transition-all"
+                  className="flex items-center gap-1 bg-[#FFFFFF] hover:bg-[#F4F4F0] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none text-[#111213] border-2 border-[#111213] px-2 py-1 text-[10px] font-mono font-bold uppercase tracking-wider shadow-[2px_2px_0px_#111213] transition-all cursor-pointer"
                 >
                   {showHotspots ? (
                     <>
@@ -192,9 +192,9 @@ export default function ArViewer({ arConfig, brandConfig, onClose }) {
                 <button
                   type="button"
                   onClick={resetCamera}
-                  aria-label="Reimposta vista 3D"
+                  aria-label="Reimposta prospettiva"
                   title="Reset prospettiva"
-                  className="flex items-center justify-center bg-[#FFFFFF] hover:bg-[#F4F4F0] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none text-[#111213] border-2 border-[#111213] p-1 text-[10px] shadow-[2px_2px_0px_#111213] transition-all"
+                  className="flex items-center justify-center bg-[#FFFFFF] hover:bg-[#F4F4F0] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none text-[#111213] border-2 border-[#111213] p-1 text-[10px] shadow-[2px_2px_0px_#111213] transition-all cursor-pointer"
                 >
                   <RotateCcw className="w-3 h-3" />
                 </button>
@@ -224,7 +224,7 @@ export default function ArViewer({ arConfig, brandConfig, onClose }) {
                     <span>3D MODEL ASSET // STANDBY</span>
                   </div>
                   <h3 className="font-mono font-bold text-sm tracking-tight uppercase">
-                    CARICAMENTO MODELLO MATERICO
+                    CARICAMENTO MODELLO D'ARREDO
                   </h3>
                 </div>
               </div>
@@ -234,16 +234,16 @@ export default function ArViewer({ arConfig, brandConfig, onClose }) {
                 ref={viewerRef}
                 src={arConfig?.modelPath || "/models/walddei-monolith.glb"}
                 poster={arConfig?.posterPath || "/images/monolith-poster.png"}
-                alt="I WAALDDEI Totem Olografico AR"
+                alt="I WAALDDEI Tavolo Basso Brutalista Monolith"
                 ar
                 ar-modes="webxr scene-viewer quick-look"
                 camera-controls
                 auto-rotate
-                rotation-per-second="18deg"
-                shadow-intensity="1.2"
-                shadow-softness="0.3"
-                exposure="1.05"
-                camera-orbit="0deg 75deg 105%"
+                rotation-per-second="14deg"
+                shadow-intensity="1.5"
+                shadow-softness="0.25"
+                exposure="1.0"
+                camera-orbit="45deg 65deg 105%"
                 touch-action="pan-y"
                 interaction-prompt="auto"
               >
@@ -278,7 +278,7 @@ export default function ArViewer({ arConfig, brandConfig, onClose }) {
                   className="absolute bottom-4 left-4 right-4 md:left-6 md:right-6 z-20 flex items-center justify-center gap-2 px-4 py-3.5 text-white font-mono font-bold text-xs uppercase tracking-wider border-2 border-[#111213] shadow-brutal active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all cursor-pointer"
                 >
                   <Sparkles className="w-4 h-4 text-white" />
-                  <span>{arConfig?.arButtonLabel || "[ PROIETTA NELLO SPAZIO // AR ]"}</span>
+                  <span>{arConfig?.arButtonLabel || "[ PROIETTA IN SALOTTO IN SCALA 1:1 // AR ]"}</span>
                 </button>
               </model-viewer>
             )}
@@ -301,8 +301,8 @@ export default function ArViewer({ arConfig, brandConfig, onClose }) {
                   <button
                     type="button"
                     onClick={() => setSelectedHotspot(null)}
-                    aria-label="Chiudi scheda materiale"
-                    className="p-1 border-2 border-[#111213] bg-[#E5E5E0] hover:bg-[#D4D4CE] active:translate-x-[2px] active:translate-y-[2px] text-[#111213] transition-all"
+                    aria-label="Chiudi scheda finitura"
+                    className="p-1 border-2 border-[#111213] bg-[#E5E5E0] hover:bg-[#D4D4CE] active:translate-x-[2px] active:translate-y-[2px] text-[#111213] transition-all cursor-pointer"
                   >
                     <X className="w-3.5 h-3.5" />
                   </button>
@@ -320,25 +320,25 @@ export default function ArViewer({ arConfig, brandConfig, onClose }) {
             )}
           </div>
 
-          {/* Quick Switch to Matrix Scanner Button */}
+          {/* Quick Switch to Room Staging Button */}
           <div className="flex justify-between items-center gap-2">
             <button
               type="button"
-              onClick={() => setActiveMode("matrix")}
-              className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 bg-[#111213] hover:bg-[#1C1F21] text-[#00FF66] border-2 border-[#111213] font-mono font-bold text-[10px] uppercase tracking-wider shadow-[2px_2px_0px_#00FF66] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all cursor-pointer"
+              onClick={() => setActiveMode("staging")}
+              className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 bg-[#111213] hover:bg-[#1C1F21] text-white border-2 border-[#111213] font-mono font-bold text-[10px] uppercase tracking-wider shadow-[2px_2px_0px_#C85A17] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all cursor-pointer"
             >
-              <Scan className="w-3.5 h-3.5 text-[#00FF66]" />
-              <span>APRI FOTOCAMERA MATRIX AR</span>
+              <Camera className="w-3.5 h-3.5 text-[#C85A17]" />
+              <span>TORNA A INTERIOR STAGING CAMERA AR</span>
             </button>
           </div>
 
-          {/* Instructions & Interaction Guide */}
+          {/* Technical Specifications Guide */}
           <div className="bg-[#FFFFFF] border-2 border-[#111213] p-2.5 shadow-[2px_2px_0px_#111213]">
             <div className="flex items-start gap-2">
               <Layers className="w-3.5 h-3.5 text-[#111213] flex-shrink-0 mt-0.5" />
               <p className="font-mono text-[10px] uppercase tracking-wide text-raw-muted leading-snug">
                 {arConfig?.instructions ||
-                  "RUOTA IL MONOLITE O TOCCA I PUNTI PER ISPEZIONARE I MATERIALI. PREMI IL TASTO AR PER PROIETTARLO NELLO SPAZIO."}
+                  "RUOTA L'ARREDO O TOCCA I PUNTI MATERICI PER ISPEZIONARE I MATERIALI. PREMI IL TASTO AR PER COLLOCARLO NELLA STANZA IN SCALA 1:1."}
               </p>
             </div>
           </div>
