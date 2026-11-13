@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import WaalddeiLogo from "./WaalddeiLogo";
+import { Sparkles, ShieldCheck } from "lucide-react";
 
 export default function HoloPlaque({ brand }) {
   const plaqueRef = useRef(null);
@@ -21,15 +22,15 @@ export default function HoloPlaque({ brand }) {
     const handleOrientation = (e) => {
       if (e.gamma !== null && e.beta !== null) {
         // gamma: Left to Right (-90 to 90)
-        // beta: Front to Back (-180 to 180, center ~45deg for normal phone hold)
+        // beta: Front to Back (-180 to 180, center ~45deg for standard reading tilt)
         const g = Math.max(-45, Math.min(45, e.gamma));
         const b = Math.max(15, Math.min(75, e.beta)) - 45;
 
-        targetY = (g / 45) * 20;  // rotateY between -20deg and 20deg
-        targetX = -(b / 30) * 16; // rotateX between -16deg and 16deg
+        targetY = (g / 45) * 28;  // horizontal parallax shift
+        targetX = -(b / 30) * 22; // vertical parallax shift
 
-        const glarePosX = Math.max(0, Math.min(100, 50 + (g / 45) * 45));
-        const glarePosY = Math.max(0, Math.min(100, 50 + (b / 30) * 45));
+        const glarePosX = Math.max(0, Math.min(100, 50 + (g / 45) * 48));
+        const glarePosY = Math.max(0, Math.min(100, 50 + (b / 30) * 48));
 
         setGlare({
           x: glarePosX,
@@ -39,7 +40,7 @@ export default function HoloPlaque({ brand }) {
       }
     };
 
-    // Smooth lerp loop for organic physical fluid motion
+    // Smooth lerp loop for organic physical fluid motion of the inner textures
     const loop = () => {
       currentX += (targetX - currentX) * 0.12;
       currentY += (targetY - currentY) * 0.12;
@@ -75,10 +76,10 @@ export default function HoloPlaque({ brand }) {
     const relX = (clientX - rect.left) / rect.width;
     const relY = (clientY - rect.top) / rect.height;
 
-    const rotY = (relX - 0.5) * 24; // rotate along Y axis
-    const rotX = (relY - 0.5) * -18; // rotate along X axis
+    const shiftX = (relX - 0.5) * 32;
+    const shiftY = (relY - 0.5) * -24;
 
-    setRot({ x: rotX, y: rotY });
+    setRot({ x: shiftY, y: shiftX });
     setGlare({
       x: relX * 100,
       y: relY * 100,
@@ -110,37 +111,34 @@ export default function HoloPlaque({ brand }) {
     }
   };
 
-  // Dynamic prismatic angle shifting with physical tilt
-  const holoAngle = 120 + rot.y * 3.5 + rot.x * 2;
+  // Dynamic prismatic rainbow angle sweeping with gyro / pointer tilt
+  const holoAngle = 120 + (glare.x - 50) * 1.8 + (glare.y - 50) * 1.2;
 
   return (
     <div 
-      className="w-full perspective-[900px] select-none"
+      className="w-full select-none"
       onClick={requestGyroPermission}
       onMouseMove={handlePointerMove}
       onMouseLeave={handlePointerLeave}
       onTouchMove={handlePointerMove}
     >
-      {/* Physical 3D Holographic Plaque Frame with Rounded Corners */}
+      {/* ============================================================= */}
+      {/* STATIONARY OUTER WINDOW: FIRM, SOLID & ROUNDED (DOES NOT MOVE)*/}
+      {/* ============================================================= */}
       <div
         ref={plaqueRef}
-        style={{
-          transform: `perspective(900px) rotateX(${rot.x}deg) rotateY(${rot.y}deg)`,
-          transition: "transform 0.08s ease-out, box-shadow 0.08s ease-out",
-          boxShadow: `${-rot.y * 0.7 + 4}px ${rot.x * 0.7 + 5}px 0px #111213`,
-        }}
-        className="relative w-full aspect-[16/9] min-h-[190px] sm:min-h-[220px] rounded-2xl sm:rounded-3xl overflow-hidden border-3 border-[#111213] bg-[#141517] flex items-center justify-center p-6 group cursor-pointer"
+        className="relative w-full aspect-[16/9] min-h-[195px] sm:min-h-[225px] rounded-2xl sm:rounded-3xl overflow-hidden border-3 border-[#111213] bg-[#141517] shadow-[4px_4px_0px_#111213] flex flex-col items-center justify-center p-6 group cursor-pointer"
       >
         {/* ========================================================= */}
-        {/* LAYER 1: REPEATING MINI-LOGOS SECURITY PATTERN (WATERMARK) */}
+        {/* LAYER 1: REPEATING MINI-LOGOS PATTERN (MOVES WITH TILT)   */}
         {/* ========================================================= */}
         <div
-          className="absolute inset-0 pointer-events-none opacity-25 mix-blend-screen transition-opacity duration-300"
+          className="absolute -inset-8 pointer-events-none opacity-30 mix-blend-screen transition-transform duration-75"
           style={{
             backgroundImage: `url('/images/waalddei-logo.svg')`,
             backgroundSize: "44px 34px",
             backgroundRepeat: "repeat",
-            backgroundPosition: `${rot.y * 0.6}px ${rot.x * 0.6}px`,
+            transform: `translate(${(glare.x - 50) * 0.45}px, ${(glare.y - 50) * 0.35}px)`,
           }}
         />
 
@@ -162,20 +160,20 @@ export default function HoloPlaque({ brand }) {
         />
 
         {/* ========================================================= */}
-        {/* LAYER 3: SECONDARY DENSE MINI-LOGO HOLOGRAPHIC FOIL       */}
+        {/* LAYER 3: SECONDARY DENSE MINI-LOGO PARALLAX FOIL          */}
         {/* ========================================================= */}
         <div
-          className="absolute inset-0 pointer-events-none opacity-35 mix-blend-overlay"
+          className="absolute -inset-8 pointer-events-none opacity-40 mix-blend-overlay transition-transform duration-75"
           style={{
             backgroundImage: `url('/images/waalddei-logo.svg')`,
-            backgroundSize: "32px 25px",
+            backgroundSize: "30px 23px",
             backgroundRepeat: "repeat",
-            backgroundPosition: `${-rot.y * 0.8}px ${-rot.x * 0.8}px`,
+            transform: `translate(${(50 - glare.x) * 0.55}px, ${(50 - glare.y) * 0.45}px)`,
           }}
         />
 
         {/* ========================================================= */}
-        {/* LAYER 4: DYNAMIC SPECULAR REFLECTION GLARE SPOTLIGHT      */}
+        {/* LAYER 4: DYNAMIC SPECULAR REFLECTION SPOTLIGHT (MOVES)   */}
         {/* ========================================================= */}
         <div
           className="absolute inset-0 pointer-events-none mix-blend-overlay transition-opacity duration-150"
@@ -202,19 +200,33 @@ export default function HoloPlaque({ brand }) {
         />
 
         {/* ========================================================= */}
-        {/* LAYER 6: HERO OFFICIAL WAALDDEI LOGO (CENTERED & EMBOSSED)*/}
+        {/* LAYER 6: HERO OFFICIAL WAALDDEI LOGO + SECURITY SEAL      */}
         {/* ========================================================= */}
-        <div className="relative z-20 flex items-center justify-center w-full max-w-[220px] sm:max-w-[260px]">
+        <div className="relative z-20 flex flex-col items-center justify-center w-full max-w-[230px] sm:max-w-[270px]">
+          {/* Official WAALDDEI Vector Logo */}
           <WaalddeiLogo
-            className="w-full h-auto text-white select-none transition-transform duration-100"
+            className="w-full h-auto text-white select-none"
             style={{
               filter: `
-                drop-shadow(0 2px 6px rgba(0, 0, 0, 0.95))
+                drop-shadow(0 2px 8px rgba(0, 0, 0, 0.95))
                 drop-shadow(0 0 16px rgba(255, 255, 255, 0.4))
               `,
-              transform: `scale(${1 + Math.abs(rot.x * 0.005) + Math.abs(rot.y * 0.005)})`,
             }}
           />
+
+          {/* Holographic Seal Badge: ORIGINAL RESTYLING HOLOGRAM */}
+          <div 
+            className="mt-3 flex items-center gap-1.5 px-3 py-0.5 rounded-full border border-white/50 bg-[#111213]/70 backdrop-blur-md shadow-[0_0_12px_rgba(255,255,255,0.25)] select-none transition-transform duration-100"
+            style={{
+              transform: `translate(${(glare.x - 50) * 0.1}px, ${(glare.y - 50) * 0.08}px)`,
+            }}
+          >
+            <Sparkles className="w-2.5 h-2.5 text-[#FFD700] flex-shrink-0 animate-pulse" />
+            <span className="font-mono font-bold text-[8px] sm:text-[9px] uppercase tracking-[0.22em] text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
+              ORIGINAL RESTYLING HOLOGRAM
+            </span>
+            <ShieldCheck className="w-2.5 h-2.5 text-[#00F0FF] flex-shrink-0" />
+          </div>
         </div>
 
       </div>
