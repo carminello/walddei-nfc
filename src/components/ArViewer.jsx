@@ -165,7 +165,7 @@ export default function ArViewer({ arConfig, brandConfig, onClose }) {
                     style={{ backgroundColor: accentColor }}
                   />
                 </span>
-                <span>BÉTON BRUT &amp; FLORA 3D</span>
+                <span>TOTEM OLOGRAFICO 3D</span>
               </div>
 
               {/* Quick Controls: Toggle Hotspots & Reset Camera */}
@@ -234,7 +234,7 @@ export default function ArViewer({ arConfig, brandConfig, onClose }) {
                 ref={viewerRef}
                 src={arConfig?.modelPath || "/models/walddei-monolith.glb"}
                 poster={arConfig?.posterPath || "/images/monolith-poster.png"}
-                alt="I WAALDDEI Monolite Materico Cemento e Flora"
+                alt="I WAALDDEI Totem Olografico AR"
                 ar
                 ar-modes="webxr scene-viewer quick-look"
                 camera-controls

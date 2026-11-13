@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import WaalddeiLogo from "./WaalddeiLogo";
 import { 
   Camera, 
   Sparkles, 
@@ -31,11 +32,10 @@ export default function MatrixArScanner({ arConfig, brandConfig, onSwitchToViewe
     {
       id: 1,
       x: 50,
-      y: 54,
+      y: 52,
       scale: 1,
-      label: "MONOLITE 01 // BÉTON BRUT",
-      floraType: "Muschio Boreale & Edera",
-      concreteType: "Calcestruzzo a Cassaforma"
+      label: "I WAALDDEI // AR TAG 01",
+      floraType: "Dettaglio Botanico"
     }
   ]);
   const [gyro, setGyro] = useState({ x: 0, y: 0 });
@@ -231,10 +231,9 @@ export default function MatrixArScanner({ arConfig, brandConfig, onSwitchToViewe
       id: Date.now(),
       x: Math.max(15, Math.min(85, tapX)),
       y: Math.max(25, Math.min(80, tapY)),
-      scale: 0.9 + Math.random() * 0.35,
-      label: `MONOLITE 0${placedObjects.length + 1} // TRASFORMATO`,
-      floraType: placedObjects.length % 2 === 0 ? "Chiazze di Felci & Lichene" : "Muschio Boreale & Edera",
-      concreteType: "Béton Brut a Cassaforma"
+      scale: 0.95 + Math.random() * 0.2,
+      label: `I WAALDDEI // AR TAG 0${placedObjects.length + 1}`,
+      floraType: "Dettaglio Botanico"
     };
 
     setPlacedObjects((prev) => [...prev.slice(-3), newObj]); // Keep up to 4 objects for performance
@@ -246,11 +245,10 @@ export default function MatrixArScanner({ arConfig, brandConfig, onSwitchToViewe
       {
         id: 1,
         x: 50,
-        y: 54,
+        y: 52,
         scale: 1,
-        label: "MONOLITE 01 // BÉTON BRUT",
-        floraType: "Muschio Boreale & Edera",
-        concreteType: "Calcestruzzo a Cassaforma"
+        label: "I WAALDDEI // AR TAG 01",
+        floraType: "Dettaglio Botanico"
       }
     ]);
   };
@@ -264,10 +262,10 @@ export default function MatrixArScanner({ arConfig, brandConfig, onSwitchToViewe
           <span className="w-2.5 h-2.5 bg-[#00FF66] animate-pulse rounded-none" />
           <div>
             <h3 className="font-mono font-bold text-[11px] tracking-widest text-[#00FF66] uppercase">
-              {arConfig?.matrixTitle || "MATRIX SPATIAL SCANNER // AR"}
+              {arConfig?.matrixTitle || "MATRIX SPATIAL AR // I WAALDDEI"}
             </h3>
             <p className="font-mono text-[8px] text-gray-400 tracking-wider uppercase">
-              DECODIFICA SPAZIO REALE &gt; BÉTON BRUT &amp; FLORA
+              DECODIFICA SPAZIO REALE &gt; HOLOTAG OLOGRAFICO
             </p>
           </div>
         </div>
@@ -329,7 +327,7 @@ export default function MatrixArScanner({ arConfig, brandConfig, onSwitchToViewe
               <span>LIDAR: {cameraActive ? "CAMERA_STREAM_ACTIVE" : "SIMULATION_MODE"}</span>
             </div>
             <div className="bg-black/70 px-2 py-0.5 border border-[#00FF66]/40">
-              <span>MESH_STATUS: TRANSFORMS_READY</span>
+              <span>HOLOTAG: PRONTO</span>
             </div>
           </div>
 
@@ -354,13 +352,13 @@ export default function MatrixArScanner({ arConfig, brandConfig, onSwitchToViewe
                 &gt; AMBIENTE RICONOSCIUTO:
               </span>
               <span className="text-gray-300 text-[8px] uppercase leading-tight block">
-                TOCCA LO SCHERMO PER DECODIFICARE I VOLUMI IN CEMENTO &amp; VEGETAZIONE
+                TOCCA LO SCHERMO PER ANCORARE L'HOLOTAG I WAALDDEI NELLO SPAZIO
               </span>
             </div>
 
             <div className="bg-black/80 px-2 py-1 border border-white/30 text-right">
               <span className="block text-[#00FF66] font-bold text-[8px]">
-                OGGETTI: {placedObjects.length} GENERATI
+                TAG: {placedObjects.length} ATTIVI
               </span>
               <span className="block text-gray-400 text-[8px]">
                 X: {gyro.x.toFixed(1)}° | Y: {gyro.y.toFixed(1)}°
@@ -369,7 +367,7 @@ export default function MatrixArScanner({ arConfig, brandConfig, onSwitchToViewe
           </div>
         </div>
 
-        {/* Layer 3: Placed Concrete Monoliths & Vegetation Patches */}
+        {/* Layer 3: Placed Lightweight Holographic AR Tags (NO HEAVY CONCRETE MONOLITH) */}
         <div className="absolute inset-0 pointer-events-none z-15 overflow-hidden">
           {placedObjects.map((obj, idx) => (
             <div
@@ -385,68 +383,48 @@ export default function MatrixArScanner({ arConfig, brandConfig, onSwitchToViewe
                 `,
               }}
             >
-              {/* Augmented Brutalist Concrete Monolith with Living Flora */}
+              {/* Sleek Floating Holographic AR Tag */}
               <div className="relative flex flex-col items-center group/card animate-in zoom-in-75 duration-200">
                 
-                {/* 3D Isometric Concrete Block Representation with Real Texture & Moss Patches */}
-                <div className="relative w-28 h-36 sm:w-36 sm:h-44 bg-[#B5B5B0] border-2 border-[#111213] shadow-[6px_6px_0px_#111213] flex flex-col justify-between p-1.5 overflow-hidden">
+                {/* Floating Glass Holo Plaque */}
+                <div className="relative w-32 h-24 sm:w-40 sm:h-28 bg-[#111213]/90 backdrop-blur-md border-2 border-[#00FF66] shadow-[0_0_20px_rgba(0,255,102,0.45)] flex flex-col justify-between p-2 rounded-lg overflow-hidden">
                   
-                  {/* Concrete Pores & Formwork Lines */}
+                  {/* Subtle Scanline Overlay */}
                   <div 
-                    className="absolute inset-0 opacity-40 mix-blend-multiply pointer-events-none"
+                    className="absolute inset-0 opacity-20 pointer-events-none"
                     style={{
-                      backgroundImage: `repeating-linear-gradient(0deg, #8E8E89 0px, #8E8E89 2px, transparent 2px, transparent 18px)`,
+                      backgroundImage: `repeating-linear-gradient(0deg, #00FF66 0px, #00FF66 1px, transparent 1px, transparent 6px)`,
                     }}
                   />
 
-                  {/* Concrete Identification Stamp */}
-                  <div className="relative z-10 flex items-center justify-between text-[7px] font-mono font-bold text-[#111213]">
-                    <span className="bg-black text-white px-1 py-0.5">BÉTON BRUT</span>
-                    <span className="text-[#C85A17]">WALDDEI #0{idx + 1}</span>
-                  </div>
-
-                  {/* LIVING FLORA PATCH 1: Top Overhanging Moss & Ivy */}
-                  <div className="absolute -top-1 left-2 right-4 h-6 bg-[#268032] border border-[#111213] shadow-sm flex items-center justify-around px-1 z-20">
-                    <Leaf className="w-3 h-3 text-[#A8FF78]" />
-                    <span className="text-[7px] font-mono font-extrabold text-white uppercase tracking-tighter">
-                      MUSCHIO VIVO
+                  {/* Header: Tag Code & Delicate Botanical Green Accent */}
+                  <div className="relative z-10 flex items-center justify-between">
+                    <span className="font-mono text-[8px] font-black tracking-widest text-[#00FF66] uppercase bg-black/70 px-1.5 py-0.5 border border-[#00FF66]/40">
+                      TAG 0{idx + 1}
                     </span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#E5FF66] animate-pulse" />
+                    <div className="flex items-center gap-1 text-[#A8FF78]">
+                      <Leaf className="w-3 h-3 text-[#A8FF78]" />
+                      <span className="font-mono text-[7px] font-bold uppercase text-white/90">BOTANICA</span>
+                    </div>
                   </div>
 
-                  {/* LIVING FLORA PATCH 2: Side Climbing Ivy Sprouting from Concrete Fissure */}
-                  <div className="absolute top-10 -right-2 w-7 h-16 bg-[#1F6B2A] border border-[#111213] flex flex-col items-center justify-between py-1 z-20">
-                    <span className="w-2 h-2 bg-[#75E05B] rounded-full" />
-                    <Leaf className="w-3 h-3 text-[#FFFFFF]" />
-                    <span className="w-1.5 h-1.5 bg-[#D4F768] rounded-full" />
+                  {/* Official Logo (Floating Centered) */}
+                  <div className="relative z-10 flex items-center justify-center my-auto py-0.5">
+                    <WaalddeiLogo
+                      className="w-auto h-7 sm:h-9 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.7)]"
+                    />
                   </div>
 
-                  {/* LIVING FLORA PATCH 3: Base Lichen & Wild Ferns */}
-                  <div className="absolute -bottom-1 -left-2 w-14 h-7 bg-[#2E7D32] border border-[#111213] flex items-center justify-center gap-1 z-20">
-                    <Leaf className="w-3 h-3 text-[#C8FF00]" />
-                    <span className="text-[6px] font-mono font-black text-white">FLORA BIO</span>
-                  </div>
-
-                  {/* Concrete Core Fissure with Corten Rust Accent */}
-                  <div className="relative z-10 w-full h-8 border border-[#111213] bg-[#C85A17]/85 p-1 flex items-center justify-between text-white my-auto">
-                    <span className="text-[7px] font-mono font-bold tracking-tight uppercase">
-                      CORTEN INSET
-                    </span>
-                    <span className="text-[6px] font-mono text-white/80">
-                      RUST // 0{idx + 1}
-                    </span>
-                  </div>
-
-                  {/* Bottom Technical Spec */}
-                  <div className="relative z-10 flex items-center justify-between text-[7px] font-mono font-bold text-[#111213] border-t border-[#111213]/40 pt-1">
-                    <span className="truncate">400x1200 mm</span>
-                    <span className="text-[#00FF66] bg-black px-1">STABILE</span>
+                  {/* Footer Bar: Coordinate & Corten Accent */}
+                  <div className="relative z-10 flex items-center justify-between border-t border-white/20 pt-1 text-[7px] font-mono text-gray-300">
+                    <span className="text-[#C85A17] font-bold">I WAALDDEI</span>
+                    <span className="text-[#00FF66] font-bold">ANCORATO</span>
                   </div>
                 </div>
 
-                {/* Floating Matrix Target Tag */}
-                <div className="mt-1.5 px-2 py-0.5 bg-black/90 border border-[#00FF66] text-[#00FF66] font-mono text-[8px] font-bold tracking-wider shadow-[2px_2px_0px_#000000] flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 bg-[#00FF66] rounded-none animate-ping" />
+                {/* Ground Target Beacon Reticle */}
+                <div className="mt-1 flex items-center gap-1 text-[8px] font-mono font-bold text-[#00FF66] bg-black/85 px-2 py-0.5 border border-[#00FF66]/50 shadow-sm">
+                  <span className="w-1.5 h-1.5 bg-[#00FF66] animate-ping" />
                   <span>{obj.label}</span>
                 </div>
               </div>
@@ -473,7 +451,7 @@ export default function MatrixArScanner({ arConfig, brandConfig, onSwitchToViewe
           className="flex items-center justify-center gap-1.5 py-2 px-2 bg-[#FFFFFF] hover:bg-[#F4F4F0] text-[#111213] border-2 border-[#111213] font-mono font-bold text-[10px] uppercase tracking-wider shadow-[2px_2px_0px_#111213] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all cursor-pointer"
         >
           <RotateCcw className="w-3.5 h-3.5 text-[#111213]" />
-          <span>RESET OGGETTI</span>
+          <span>RESET TAG</span>
         </button>
 
         {/* Button 2: Restart / Toggle Camera */}
@@ -497,7 +475,7 @@ export default function MatrixArScanner({ arConfig, brandConfig, onSwitchToViewe
           className="col-span-2 sm:col-span-1 flex items-center justify-center gap-1.5 py-2 px-2 text-white border-2 border-[#111213] font-mono font-bold text-[10px] uppercase tracking-wider shadow-[2px_2px_0px_#111213] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all cursor-pointer"
         >
           <Box className="w-3.5 h-3.5 text-white" />
-          <span>VISTA 3D MATERICA</span>
+          <span>VISTA 3D TOTEM</span>
         </button>
       </div>
 
@@ -507,7 +485,7 @@ export default function MatrixArScanner({ arConfig, brandConfig, onSwitchToViewe
           <Sparkles className="w-3.5 h-3.5 text-[#00FF66] flex-shrink-0 mt-0.5 bg-black p-0.5" />
           <p className="font-mono text-[9.5px] uppercase tracking-wide text-raw-muted leading-tight">
             {arConfig?.instructions || 
-              "INQUADRA LA STANZA O TOCCA LO SCHERMO: LA MATRICE DECODIFICA LO SPAZIO MATERIALIZZANDO MONOLITI IN BÉTON BRUT E VEGETAZIONE SPONTANEA."}
+              "INQUADRA LA STANZA O TOCCA LO SCHERMO PER ANCORARE L'HOLOTAG I WAALDDEI NELLO SPAZIO CON VISIONE MATRIX E DETTAGLI BOTANICI."}
           </p>
         </div>
       </div>
