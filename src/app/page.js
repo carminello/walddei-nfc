@@ -118,12 +118,15 @@ export default function DigitalBusinessCard() {
       {/* ============================================================== */}
       {/* 0. ARCHITECTURAL SPACE BACKGROUND IMAGE & TRANSLUCENT SCRIM    */}
       {/* ============================================================== */}
-      <div
-        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat pointer-events-none scale-105"
-        style={{ backgroundImage: `url('/images/walddei-space.jpg')` }}
-      />
-      {/* Smoked Architectural Glass Tint Scrim */}
-      <div className="fixed inset-0 z-0 bg-gradient-to-b from-[#0A0B0D]/75 via-[#0A0B0D]/55 to-[#0A0B0D]/85 backdrop-blur-[2px] pointer-events-none" />
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <img
+          src="/images/walddei-space.jpg"
+          alt="I WAALDDEI Architectural Interior Space"
+          className="w-full h-full object-cover object-center sm:object-top filter brightness-[0.88] contrast-[1.05]"
+        />
+      </div>
+      {/* Lighter atmospheric gradient: transparent central focus so the architectural room is clearly visible */}
+      <div className="fixed inset-0 z-0 bg-gradient-to-b from-[#0A0B0D]/50 via-transparent to-[#0A0B0D]/65 pointer-events-none" />
 
       {/* ============================================================== */}
       {/* MAIN CONTAINER: TRANSLUCENT ARCHITECTURAL CONTROL PANEL        */}
