@@ -128,7 +128,8 @@ function getRandomPieceKey() {
   return PIECE_KEYS[Math.floor(Math.random() * PIECE_KEYS.length)];
 }
 
-export default function ArchiTetris({ arConfig, brandConfig, onClose }) {
+export default function ArchiTetris({ arConfig, brandConfig, contactsConfig, onClose }) {
+  const cleanPhone = (contactsConfig?.phoneNumber || "+393294833426").replace(/[^0-9]/g, "");
   // Game states
   const [grid, setGrid] = useState(createEmptyGrid);
   const [currentPieceKey, setCurrentPieceKey] = useState(getRandomPieceKey);
@@ -930,7 +931,7 @@ export default function ArchiTetris({ arConfig, brandConfig, onClose }) {
               <div className="flex flex-col gap-2">
                 {/* WhatsApp Direct Share / Lead Generator */}
                 <a
-                  href={`https://wa.me/390289000000?text=${encodeURIComponent(
+                  href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent(
                     `Ciao I WAALDDEI! Ho appena arredato ${scoreMq} m² ad ARCHI-TETRIS AR sulla vostra placca NFC. Vorrei informazioni per un progetto di interior design.`
                   )}`}
                   target="_blank"

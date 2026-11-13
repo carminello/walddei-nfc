@@ -336,6 +336,7 @@ export default function DigitalBusinessCard() {
               <ArViewer
                 arConfig={arExperience}
                 brandConfig={brand}
+                contactsConfig={contacts}
                 onClose={() => setIsArModalOpen(false)}
               />
             </div>

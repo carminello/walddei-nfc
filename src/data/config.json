@@ -8,6 +8,7 @@
     "location": "MILANO // ZÜRICH"
   },
   "contacts": {
+    "phoneNumber": "+393294833426",
     "vcardPath": "/walddei.vcf",
     "vcardLabel": "[ + SALVA IN RUBRICA ]",
     "actions": [
@@ -15,7 +16,7 @@
         "id": "whatsapp",
         "label": "WHATSAPP",
         "sublabel": "MESSAGGIO DIRETTO",
-        "url": "https://wa.me/390289000000",
+        "url": "https://wa.me/393294833426",
         "type": "primary",
         "icon": "MessageCircleMore"
       },
@@ -23,7 +24,7 @@
         "id": "phone",
         "label": "CHIAMATA",
         "sublabel": "LINEA DIRETTA",
-        "url": "tel:+390289000000",
+        "url": "tel:+393294833426",
         "type": "primary",
         "icon": "PhoneCall"
       },
