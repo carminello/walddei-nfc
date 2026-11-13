@@ -127,7 +127,7 @@ export default function HoloPlaque({ brand }) {
       {/* ============================================================= */}
       <div
         ref={plaqueRef}
-        className="relative w-full aspect-[16/9] min-h-[195px] sm:min-h-[225px] rounded-2xl sm:rounded-3xl overflow-hidden border-3 border-[#111213] bg-[#141517] shadow-[4px_4px_0px_#111213] flex flex-col items-center justify-center p-6 group cursor-pointer"
+        className="relative w-full aspect-[16/9] min-h-[195px] sm:min-h-[225px] rounded-2xl sm:rounded-3xl overflow-hidden border-3 border-[#111213] bg-[#141517] shadow-[4px_4px_0px_#111213] flex flex-col items-center justify-center p-4 sm:p-5 group cursor-pointer"
       >
         {/* ========================================================= */}
         {/* LAYER 1: REPEATING MINI-LOGOS PATTERN (MOVES WITH TILT)   */}
@@ -202,10 +202,10 @@ export default function HoloPlaque({ brand }) {
         {/* ========================================================= */}
         {/* LAYER 6: HERO OFFICIAL WAALDDEI LOGO + SECURITY SEAL      */}
         {/* ========================================================= */}
-        <div className="relative z-20 flex flex-col items-center justify-center w-full max-w-[230px] sm:max-w-[270px]">
+        <div className="relative z-20 flex flex-col items-center justify-center w-full max-w-[240px] sm:max-w-[280px] -mt-1 sm:-mt-2">
           {/* Official WAALDDEI Vector Logo */}
           <WaalddeiLogo
-            className="w-full h-auto text-white select-none"
+            className="w-auto h-[68px] sm:h-[82px] max-w-[160px] sm:max-w-[200px] text-white select-none"
             style={{
               filter: `
                 drop-shadow(0 2px 8px rgba(0, 0, 0, 0.95))
@@ -214,18 +214,18 @@ export default function HoloPlaque({ brand }) {
             }}
           />
 
-          {/* Holographic Seal Badge: ORIGINAL RESTYLING HOLOGRAM */}
+          {/* Holographic Seal Badge: ORIGINAL RESTYLING HOLOGRAM (ELEVATED & HIGH-CONTRAST) */}
           <div 
-            className="mt-3 flex items-center gap-1.5 px-3 py-0.5 rounded-full border border-white/50 bg-[#111213]/70 backdrop-blur-md shadow-[0_0_12px_rgba(255,255,255,0.25)] select-none transition-transform duration-100"
+            className="mt-2.5 sm:mt-3 flex items-center gap-1.5 px-3 py-1 rounded-full border border-white/80 bg-[#0B0C0E]/92 backdrop-blur-md shadow-[0_4px_16px_rgba(0,0,0,0.9),0_0_8px_rgba(255,255,255,0.3)] select-none transition-transform duration-100"
             style={{
               transform: `translate(${(glare.x - 50) * 0.1}px, ${(glare.y - 50) * 0.08}px)`,
             }}
           >
-            <Sparkles className="w-2.5 h-2.5 text-[#FFD700] flex-shrink-0 animate-pulse" />
-            <span className="font-mono font-bold text-[8px] sm:text-[9px] uppercase tracking-[0.22em] text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
+            <Sparkles className="w-3 h-3 text-[#FFD700] flex-shrink-0 animate-pulse" />
+            <span className="font-mono font-black text-[9.5px] sm:text-[10.5px] uppercase tracking-[0.16em] text-white drop-shadow-[0_1px_3px_rgba(0,0,0,1)]">
               ORIGINAL RESTYLING HOLOGRAM
             </span>
-            <ShieldCheck className="w-2.5 h-2.5 text-[#00F0FF] flex-shrink-0" />
+            <ShieldCheck className="w-3 h-3 text-[#00F0FF] flex-shrink-0" />
           </div>
         </div>
 
