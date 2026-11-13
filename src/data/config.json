@@ -63,50 +63,52 @@
   },
   "arExperience": {
     "enabled": true,
-    "sectionTitle": "01 // ARCHITETTURA MATERICA & AR",
-    "shortDescription": "Esplora il monolite in calcestruzzo a cassaforma e acciaio corten, e proiettalo nella stanza in WebAR.",
-    "openButtonLabel": "[ APRI ESPERIENZA 3D / AR ]",
+    "sectionTitle": "01 // MATRIX AR // CEMENTO & FLORA",
+    "shortDescription": "Attiva lo scanner Matrix fotocamera: trasforma lo spazio reale in architettura in cemento grezzo e vegetazione viva.",
+    "openButtonLabel": "[ AVVIA MATRIX AR SCANNER ]",
     "closeButtonLabel": "[ X CHIUDI ]",
-    "instructions": "RUOTA IL MONOLITE O TOCCA I PUNTI PER ISPEZIONARE I MATERIALI. PREMI IL TASTO AR PER PROIETTARLO NELLO SPAZIO.",
+    "matrixTitle": "I WAALDDEI // MATRIX SPATIAL SCANNER",
+    "matrixSubtitle": "RE-MATERIALIZING REALITY INTO BÉTON BRUT & FLORA",
+    "instructions": "INQUADRA LA STANZA O RUOTA IL MONOLITE: TOCCA LO SCHERMO PER DECODIFICARE I VOLUMI IN CEMENTO E LE CHIAZZE BOTANICHE.",
     "modelPath": "/models/walddei-monolith.glb",
     "posterPath": "/images/monolith-poster.png",
-    "arButtonLabel": "[ PROIETTA NELLA STANZA // AR ]",
+    "arButtonLabel": "[ PROIETTA NELLO SPAZIO // AR ]",
     "hotspots": [
       {
         "id": "hotspot-1",
         "slot": "hotspot-1",
-        "position": "0.15m 0.45m 0.1m",
+        "position": "0.0m 0.25m 0.18m",
         "normal": "0m 0m 1m",
         "code": "MAT // 01",
-        "title": "BÉTON BRUT A CASSAFORMA",
-        "description": "Calcestruzzo strutturale a vista con venatura lignea impressa dalle doghe di casseratura artigianale."
+        "title": "BÉTON BRUT ARCHITETTONICO",
+        "description": "Monolite strutturale in calcestruzzo a vista con cassaforme a legno grezzo e spigoli vivi brutalisti."
       },
       {
         "id": "hotspot-2",
         "slot": "hotspot-2",
-        "position": "-0.18m 0.12m 0.12m",
+        "position": "-0.16m 0.05m 0.18m",
         "normal": "0m 0m 1m",
         "code": "MAT // 02",
-        "title": "ACCIAIO CORTEN OSSIDATO",
-        "description": "Lastra in metallo brunito a caldo con ossidazione naturale e sigillatura a cera microcristallina."
+        "title": "EDERA & FELCI SPONTANEE",
+        "description": "Vegetazione viva che colonizza le fessure verticali del cemento, creando un innesto biofilico primordiale."
       },
       {
         "id": "hotspot-3",
         "slot": "hotspot-3",
-        "position": "0.0m -0.32m 0.15m",
+        "position": "0.26m -0.08m 0.05m",
         "normal": "0m 1m 0m",
         "code": "MAT // 03",
-        "title": "MICROCEMENTO CONTINUO",
-        "description": "Superficie continua levigata satinata a poro chiuso con riflessione diffusa della luce naturale."
+        "title": "CUSCINI DI MUSCHIO POLARE",
+        "description": "Chiazze di muschio vellutato insediate sui terrazzamenti a sbalzo del blocco minerale."
       },
       {
         "id": "hotspot-4",
         "slot": "hotspot-4",
-        "position": "0.18m -0.1m -0.1m",
-        "normal": "1m 0m 0m",
+        "position": "0.0m -0.15m 0.185m",
+        "normal": "0m 0m 1m",
         "code": "MAT // 04",
-        "title": "NOCE SMOKED MASSELLO",
-        "description": "Legno secolare a finitura termotrattata e spazzolatura a fiamma per boiserie e arredi integrati."
+        "title": "ACCIAIO BRUNITO CORTEN",
+        "description": "Anima metallica a taglio termico che ancora i volumi monolitici in calcestruzzo alle radici vegetali."
       }
     ]
   },
