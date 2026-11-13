@@ -1,10 +1,10 @@
 {
   "brand": {
-    "name": "WALDDEI",
+    "name": "I WAALDDEI",
     "tagline": "INTERIOR ARCHITECTURE // BÉTON BRUT & RAW STEEL",
     "manifesto": "Architettura d'interni fondata sul béton brut a cassaforma di legno, acciaio corten ossidato, microcemento levigato e volumi monolitici in dialogo con la luce naturale.",
     "accentColor": "#C85A17",
-    "badge": "CERTIFIED INTERIOR PROJECT // NFC TAG",
+    "badge": "CERTIFIED PHYSICAL NFC PLAQUE // ED. 2026",
     "location": "MILANO // ZÜRICH"
   },
   "contacts": {
@@ -29,11 +29,19 @@
       },
       {
         "id": "portfolio",
-        "label": "PORTFOLIO / IG",
-        "sublabel": "ARCHIVIO PROGETTI",
+        "label": "PORTFOLIO",
+        "sublabel": "PROGETTI DIGITALI",
         "url": "https://walddei.com",
         "type": "secondary",
         "icon": "Globe"
+      },
+      {
+        "id": "instagram",
+        "label": "INSTAGRAM",
+        "sublabel": "ARCHIVIO VISIVO",
+        "url": "https://instagram.com/iwaalddei",
+        "type": "secondary",
+        "icon": "Instagram"
       },
       {
         "id": "email",
