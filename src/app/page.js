@@ -291,16 +291,21 @@ export default function DigitalBusinessCard() {
       {/* ============================================================== */}
       <footer className="relative z-10 w-full max-w-xl pt-2 mt-3 flex items-center justify-between font-mono text-[9px] sm:text-[10px] text-white/80 bg-black/40 backdrop-blur-xl border border-white/15 rounded-xl px-3.5 py-2 shadow-[0_8px_24px_rgba(0,0,0,0.4)]">
         <span className="font-bold uppercase tracking-wider">
-          {brand?.name} © 2026 // MILANO
+          {brand?.name} © 2026
         </span>
         <a
           href={footer?.creditUrl || "https://instagram.com/carminellolab"}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 font-bold underline hover:no-underline uppercase tracking-wider hover:text-[#C85A17] transition-colors"
+          className="inline-flex items-center gap-1.5 font-bold uppercase tracking-wider text-white hover:text-[#C85A17] transition-all group"
         >
-          <span>{footer?.creditText || "NFC ARTIFACT BY CARMINELLOLAB"}</span>
-          <ArrowUpRight className="w-2.5 h-2.5" />
+          <span>{footer?.creditPrefix || "NFC ARTIFACT BY"}</span>
+          <img
+            src={footer?.creditLogo || "/images/carminellolab-logo.jpg"}
+            alt="Carminello Lab Logo"
+            className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border border-white/40 shadow-[0_0_8px_rgba(255,0,128,0.4)] object-cover group-hover:scale-110 group-hover:border-white transition-all"
+          />
+          <ArrowUpRight className="w-2.5 h-2.5 opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
         </a>
       </footer>
 

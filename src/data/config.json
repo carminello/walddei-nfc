@@ -107,7 +107,8 @@
     ]
   },
   "footer": {
-    "creditText": "NFC ARTIFACT BY CARMINELLOLAB",
+    "creditPrefix": "NFC ARTIFACT BY",
+    "creditLogo": "/images/carminellolab-logo.jpg",
     "creditUrl": "https://instagram.com/carminellolab",
     "year": "2026",
     "license": "PROPRIETARY PHYSICAL ARTIFACT"
