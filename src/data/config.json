@@ -1,9 +1,9 @@
 {
   "brand": {
     "name": "WALDDEI",
-    "tagline": "INTERIOR ARCHITECTURE // RAW DESIGN",
-    "manifesto": "Architettura d'interni fondata sulla sincerità costruttiva, geometrie monolitiche e materia viva: cemento spatolato a mano, ferro grezzo cerato, legno fossile e pietre d'oriente trattate con lavorazioni artigianali radicali.",
-    "accentColor": "#FF3B00",
+    "tagline": "INTERIOR ARCHITECTURE // BÉTON BRUT & RAW STEEL",
+    "manifesto": "Architettura d'interni fondata sul béton brut a cassaforma di legno, acciaio corten ossidato, microcemento levigato e volumi monolitici in dialogo con la luce naturale.",
+    "accentColor": "#C85A17",
     "badge": "CERTIFIED INTERIOR PROJECT // NFC TAG",
     "location": "MILANO // ZÜRICH"
   },
@@ -55,8 +55,8 @@
   },
   "arExperience": {
     "enabled": true,
-    "sectionTitle": "01 // MATERIALI & AR",
-    "shortDescription": "Esplora i campioni materici del monolite e proiettalo nella stanza tramite WebAR.",
+    "sectionTitle": "01 // ARCHITETTURA MATERICA & AR",
+    "shortDescription": "Esplora il monolite in calcestruzzo a cassaforma e acciaio corten, e proiettalo nella stanza in WebAR.",
     "openButtonLabel": "[ APRI ESPERIENZA 3D / AR ]",
     "closeButtonLabel": "[ X CHIUDI ]",
     "instructions": "RUOTA IL MONOLITE O TOCCA I PUNTI PER ISPEZIONARE I MATERIALI. PREMI IL TASTO AR PER PROIETTARLO NELLO SPAZIO.",
@@ -70,8 +70,8 @@
         "position": "0.15m 0.45m 0.1m",
         "normal": "0m 0m 1m",
         "code": "MAT // 01",
-        "title": "CEMENTO GREZZO",
-        "description": "Finitura materica spatolata a mano, poro aperto naturale con trattamento idrorepellente ecologico."
+        "title": "BÉTON BRUT A CASSAFORMA",
+        "description": "Calcestruzzo strutturale a vista con venatura lignea impressa dalle doghe di casseratura artigianale."
       },
       {
         "id": "hotspot-2",
@@ -79,8 +79,8 @@
         "position": "-0.18m 0.12m 0.12m",
         "normal": "0m 0m 1m",
         "code": "MAT // 02",
-        "title": "FERRO NATURALE BRUNITO",
-        "description": "Lastra da 6mm ossidata con acidi vegetali e sigillata a caldo con cera microcristallina."
+        "title": "ACCIAIO CORTEN OSSIDATO",
+        "description": "Lastra in metallo brunito a caldo con ossidazione naturale e sigillatura a cera microcristallina."
       },
       {
         "id": "hotspot-3",
@@ -88,13 +88,22 @@
         "position": "0.0m -0.32m 0.15m",
         "normal": "0m 1m 0m",
         "code": "MAT // 03",
-        "title": "ROVERE DI PALUDE FOSSILE",
-        "description": "Legno massello secolare estratto da sedimenti fluviali, spazzolatura a fiamma viva."
+        "title": "MICROCEMENTO CONTINUO",
+        "description": "Superficie continua levigata satinata a poro chiuso con riflessione diffusa della luce naturale."
+      },
+      {
+        "id": "hotspot-4",
+        "slot": "hotspot-4",
+        "position": "0.18m -0.1m -0.1m",
+        "normal": "1m 0m 0m",
+        "code": "MAT // 04",
+        "title": "NOCE SMOKED MASSELLO",
+        "description": "Legno secolare a finitura termotrattata e spazzolatura a fiamma per boiserie e arredi integrati."
       }
     ]
   },
   "footer": {
-    "creditText": "NFC ARTIFACT ENGINEERED BY CARMINELLOLAB",
+    "creditText": "NFC ARTIFACT BY CARMINELLOLAB",
     "creditUrl": "https://instagram.com/carminellolab",
     "year": "2026",
     "license": "PROPRIETARY PHYSICAL ARTIFACT"

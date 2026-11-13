@@ -3,11 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --bg-color: #E5E5E0;
-  --grid-color: #D4D4CE;
-  --ink-color: #0A0A0A;
-  --surface-card: #F4F4F0;
-  --surface-white: #FFFFFF;
+  --bg-color: #111213;
+  --black-steel: #111213;
+  --concrete-light: #EBECE9;
+  --concrete-surface: #F4F5F4;
+  --corten-accent: #C85A17;
+  --concrete-grid: rgba(211, 214, 212, 0.12);
 }
 
 * {
@@ -18,12 +19,7 @@
 html,
 body {
   background-color: var(--bg-color);
-  background-image: 
-    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
-  background-size: 24px 24px;
-  background-position: 0 0;
-  color: var(--ink-color);
+  color: var(--black-steel);
   min-height: 100vh;
   margin: 0;
   padding: 0;
@@ -31,47 +27,48 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Custom raw architectural scrollbar */
+/* Custom architectural scrollbar in blackened steel & corten */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #E5E5E0;
-  border-left: 2px solid #0A0A0A;
+  background: #111213;
+  border-left: 1px solid #222527;
 }
 ::-webkit-scrollbar-thumb {
-  background: #0A0A0A;
+  background: #C85A17;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #333333;
+  background: #D46022;
 }
 
-/* Neo-brutalist Utility Classes */
+/* Neo-brutalist Architectural Utility Classes */
 @layer components {
   .brutal-border {
-    border: 3px solid #0A0A0A;
+    border: 3px solid #111213;
   }
   .brutal-border-2 {
-    border: 2px solid #0A0A0A;
+    border: 2px solid #111213;
   }
   .brutal-card {
-    border: 3px solid #0A0A0A;
-    background-color: #F4F4F0;
-    box-shadow: 4px 4px 0px #0A0A0A;
+    border: 3px solid #111213;
+    background-color: rgba(244, 245, 244, 0.94);
+    backdrop-filter: blur(8px);
+    box-shadow: 4px 4px 0px #111213;
   }
   .brutal-btn {
-    border: 2px solid #0A0A0A;
-    box-shadow: 4px 4px 0px #0A0A0A;
+    border: 2px solid #111213;
+    box-shadow: 3px 3px 0px #111213;
     transition: all 0.08s ease-in-out;
   }
   .brutal-btn:hover {
     transform: translate(-1px, -1px);
-    box-shadow: 5px 5px 0px #0A0A0A;
+    box-shadow: 4px 4px 0px #111213;
   }
   .brutal-btn:active {
-    transform: translate(4px, 4px) !important;
-    box-shadow: 0px 0px 0px #0A0A0A !important;
+    transform: translate(3px, 3px) !important;
+    box-shadow: 0px 0px 0px #111213 !important;
   }
 }
 
@@ -81,7 +78,7 @@ model-viewer {
   height: 100%;
   --poster-color: transparent;
   outline: none;
-  background-color: #F4F4F0;
+  background-color: #EBECE9;
 }
 
 /* Custom 3D Hotspot Pins in WebAR */
@@ -92,14 +89,14 @@ model-viewer {
   width: 28px;
   height: 28px;
   border-radius: 0px;
-  border: 2px solid #0A0A0A;
+  border: 2px solid #111213;
   background-color: #FFFFFF;
-  color: #0A0A0A;
+  color: #111213;
   font-family: var(--font-jetbrains-mono), monospace;
   font-weight: 700;
   font-size: 11px;
   cursor: pointer;
-  box-shadow: 3px 3px 0px #0A0A0A;
+  box-shadow: 3px 3px 0px #111213;
   transition: transform 0.1s ease, background-color 0.1s ease, color 0.1s ease;
   user-select: none;
 }
@@ -107,13 +104,15 @@ model-viewer {
 .ar-hotspot-pin:hover,
 .ar-hotspot-pin:focus,
 .ar-hotspot-pin.active {
-  background-color: #0A0A0A;
+  background-color: #111213;
   color: #FFFFFF;
   transform: scale(1.15) translate(-1px, -1px);
   box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.4);
 }
 
 .ar-hotspot-pin.accent-active {
-  border-color: #0A0A0A;
+  background-color: #C85A17 !important;
+  color: #FFFFFF !important;
+  border-color: #111213;
   transform: scale(1.2);
 }
