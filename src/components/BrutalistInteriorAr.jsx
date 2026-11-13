@@ -21,6 +21,7 @@ export default function BrutalistInteriorAr({ arConfig, brandConfig, onSwitchToV
   const streamRef = useRef(null);
 
   const [cameraActive, setCameraActive] = useState(false);
+  const [cameraError, setCameraError] = useState(null);
   const [selectedItemIndex, setSelectedItemIndex] = useState(0);
   const [selectedFinish, setSelectedFinish] = useState("corten"); // "corten" | "nero" | "cemento"
   const [showDimensions, setShowDimensions] = useState(true);
@@ -65,25 +66,58 @@ export default function BrutalistInteriorAr({ arConfig, brandConfig, onSwitchToV
 
   const currentPiece = furniturePieces[selectedItemIndex];
 
-  // 1. Camera Initialization
+  // 1. Robust Mobile Camera Initialization (iOS Safari & Android Chrome Safe)
   const startCamera = async () => {
     try {
-      if (!navigator?.mediaDevices?.getUserMedia) return;
-      const stream = await navigator.mediaDevices.getUserMedia({
-        video: {
-          facingMode: { ideal: "environment" },
-          width: { ideal: 1280 },
-          height: { ideal: 720 }
-        },
-        audio: false
-      });
-      streamRef.current = stream;
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-        videoRef.current.play().catch(() => {});
+      setCameraError(null);
+      if (!navigator?.mediaDevices?.getUserMedia) {
+        setCameraError("Fotocamera non supportata dal browser.");
+        setCameraActive(false);
+        return;
       }
-      setCameraActive(true);
-    } catch {
+
+      // Stop any existing streams first
+      if (streamRef.current) {
+        streamRef.current.getTracks().forEach((track) => track.stop());
+        streamRef.current = null;
+      }
+
+      let stream;
+      try {
+        // Try back camera (ideal environment)
+        stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: { ideal: "environment" } },
+          audio: false
+        });
+      } catch (err1) {
+        console.warn("Back camera constraint failed, trying basic video:", err1);
+        // Fallback to any camera
+        stream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+          audio: false
+        });
+      }
+
+      streamRef.current = stream;
+
+      // Attach immediately to the video element which is ALWAYS in the DOM
+      if (videoRef.current) {
+        const video = videoRef.current;
+        video.srcObject = stream;
+        video.setAttribute("playsinline", "true");
+        video.setAttribute("webkit-playsinline", "true");
+        video.muted = true;
+        
+        try {
+          await video.play();
+        } catch (playErr) {
+          console.warn("Video play notice:", playErr);
+        }
+        setCameraActive(true);
+      }
+    } catch (err) {
+      console.error("Camera access notice:", err);
+      setCameraError(err.name === "NotAllowedError" ? "Permesso fotocamera negato." : err.message);
       setCameraActive(false);
     }
   };
@@ -93,13 +127,26 @@ export default function BrutalistInteriorAr({ arConfig, brandConfig, onSwitchToV
       streamRef.current.getTracks().forEach((track) => track.stop());
       streamRef.current = null;
     }
+    if (videoRef.current) {
+      videoRef.current.srcObject = null;
+    }
     setCameraActive(false);
   };
 
   useEffect(() => {
     startCamera();
-    return () => stopCamera();
+    return () => {
+      stopCamera();
+    };
   }, []);
+
+  // Ensure stream connection whenever videoRef mounts or cameraActive updates
+  useEffect(() => {
+    if (streamRef.current && videoRef.current && videoRef.current.srcObject !== streamRef.current) {
+      videoRef.current.srcObject = streamRef.current;
+      videoRef.current.play().catch(() => {});
+    }
+  }, [cameraActive]);
 
   // 2. Gyroscope listener for real spatial perspective
   useEffect(() => {
@@ -177,18 +224,21 @@ export default function BrutalistInteriorAr({ arConfig, brandConfig, onSwitchToV
         onClick={handleViewportTap}
         className="relative w-full aspect-[4/5] sm:aspect-square bg-[#1A1C1E] border-3 border-[#111213] shadow-brutal overflow-hidden cursor-crosshair group"
       >
-        {/* Layer 0: Camera Feed or Real Interior Space Background */}
-        {cameraActive ? (
-          <video
-            ref={videoRef}
-            playsInline
-            autoPlay
-            muted
-            className="absolute inset-0 w-full h-full object-cover filter contrast-110 brightness-95"
-          />
-        ) : (
+        {/* Layer 0: Camera Feed (ALWAYS rendered in DOM so ref and stream attachment never fail) */}
+        <video
+          ref={videoRef}
+          playsInline
+          autoPlay
+          muted
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 filter contrast-110 brightness-95 ${
+            cameraActive ? "opacity-100 z-0" : "opacity-0 pointer-events-none -z-10"
+          }`}
+        />
+
+        {/* Fallback Interior Background when camera is loading or inactive */}
+        {!cameraActive && (
           <div 
-            className="absolute inset-0 w-full h-full bg-cover bg-center filter contrast-115 brightness-85"
+            className="absolute inset-0 w-full h-full bg-cover bg-center filter contrast-115 brightness-85 z-0"
             style={{ backgroundImage: `url('/images/walddei-space.jpg')` }}
           />
         )}
@@ -199,8 +249,10 @@ export default function BrutalistInteriorAr({ arConfig, brandConfig, onSwitchToV
           {/* Top Architectural Banner */}
           <div className="flex items-center justify-between text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
             <div className="flex items-center gap-1.5 bg-[#111213]/90 px-2 py-0.5 border border-white/60">
-              <span className="w-2 h-2 rounded-full bg-[#00FF66] animate-pulse" />
-              <span className="font-bold">PIANO PAVIMENTO CALIBRATO [0.0m]</span>
+              <span className={`w-2 h-2 rounded-full ${cameraActive ? "bg-[#00FF66] animate-pulse" : "bg-[#FF3B00]"}`} />
+              <span className="font-bold">
+                {cameraActive ? "CAMERA LIVE // AMBIENTE REALE" : cameraError ? cameraError : "FOTOCAMERA IN ATTESA"}
+              </span>
             </div>
             <div className="bg-[#111213]/90 px-2 py-0.5 border border-white/60 text-right">
               <span>PASSO GRIGLIA: 50x50 cm</span>
