@@ -63,50 +63,41 @@
   },
   "arExperience": {
     "enabled": true,
-    "sectionTitle": "01 // VIRTUAL SHOWROOM & STAGING 3D",
-    "shortDescription": "Esplora gli arredi brutalisti I WAALDDEI in 3D e ambientali nella tua stanza direttamente dal browser, senza installare app.",
-    "openButtonLabel": "[ APRI SHOWROOM & STAGING 3D ]",
+    "sectionTitle": "01 // PORTALE ARCHITETTONICO 3D",
+    "shortDescription": "Simulatore di luce e scultura spaziale: esplora i volumi in calcestruzzo e acciaio corten attraverso le fasi del sole.",
+    "openButtonLabel": "[ APRI PORTALE MATERICO 3D ]",
     "closeButtonLabel": "[ X CHIUDI ]",
-    "instructions": "RUOTA L'ARREDO IN 3D O INQUADRA LA STANZA PER AMBIENTARLO DIRETTAMENTE DAL BROWSER SENZA SCARICARE APP.",
+    "instructions": "RUOTA LA SCULTURA A 360° E CAMBIA L'ANGOLO DELLA LUCE SOLARE (ALBA / MEZZOGIORNO / TRAMONTO / NOTTE) PER OSSERVARE LE OMBRE SUI MATERIALI.",
     "modelPath": "/models/walddei-monolith.glb",
     "posterPath": "/images/monolith-poster.png",
-    "arButtonLabel": "[ AMBIENTA NELLA STANZA // FOTOCAMERA ]",
+    "arButtonLabel": "[ ESPLORA VOLUMI ARCHITETTONICI ]",
     "hotspots": [
       {
         "id": "hotspot-1",
         "slot": "hotspot-1",
-        "position": "0.35m 0.35m 0.15m",
-        "normal": "0m 1m 0m",
+        "position": "0.0m 0.15m 0.11m",
+        "normal": "0m 0m 1m",
         "code": "MAT // 01",
-        "title": "BÉTON BRUT A CASSAFORMA",
-        "description": "Piano a sbalzo in calcestruzzo massiccio con casseratura a doghe di legno naturale a vista e spigoli vivi."
+        "title": "LAMA IN ACCIAIO CORTEN",
+        "description": "Lama centrale strutturale a taglio netto con ossidazione naturale e sigillatura a cera microcristallina."
       },
       {
         "id": "hotspot-2",
         "slot": "hotspot-2",
-        "position": "0.36m 0.15m 0.15m",
-        "normal": "1m 0m 0m",
+        "position": "-0.24m 0.20m 0.10m",
+        "normal": "0m 0m 1m",
         "code": "MAT // 02",
-        "title": "ACCIAIO CORTEN OSSIDATO",
-        "description": "Setto portante asimmetrico e vasca fioriera a filo in acciaio ossidato e sigillato a cera naturale."
+        "title": "BÉTON BRUT A CASSAFORMA",
+        "description": "Calcestruzzo strutturale colato a vista in casseforme di doghe di rovere naturale. Spigoli vivi brutalisti."
       },
       {
         "id": "hotspot-3",
         "slot": "hotspot-3",
-        "position": "0.0m 0.11m 0.0m",
+        "position": "0.0m -0.34m 0.22m",
         "normal": "0m 1m 0m",
         "code": "MAT // 03",
-        "title": "ROVERE SCURO BRUCIATO",
-        "description": "Trave strutturale orizzontale di collegamento in legno massello termotrattato a fiamma secondo tecnica Yakisugi."
-      },
-      {
-        "id": "hotspot-4",
-        "slot": "hotspot-4",
-        "position": "0.0m 0.42m 0.0m",
-        "normal": "0m 1m 0m",
-        "code": "MAT // 04",
-        "title": "VEGETAZIONE DA INTERNO",
-        "description": "Inserto botanico integrato a scomparsa con cuscino verde vivo che instaura un dialogo biofilico con la pietra."
+        "title": "PLINTO A GRADONI RETTIFICATI",
+        "description": "Basamento minerale a blocchi massicci ad alta densità con ombre d'appoggio nette e profonde."
       }
     ]
   },
