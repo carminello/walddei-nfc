@@ -63,14 +63,14 @@
   },
   "arExperience": {
     "enabled": true,
-    "sectionTitle": "01 // INTERIOR STAGING // AR",
-    "shortDescription": "Inquadra la stanza e posiziona gli arredi scultorei I WAALDDEI in scala 1:1 nel tuo spazio con rilievo metrico.",
-    "openButtonLabel": "[ APRI INTERIOR STAGING AR ]",
+    "sectionTitle": "01 // VIRTUAL SHOWROOM & STAGING 3D",
+    "shortDescription": "Esplora gli arredi brutalisti I WAALDDEI in 3D e ambientali nella tua stanza direttamente dal browser, senza installare app.",
+    "openButtonLabel": "[ APRI SHOWROOM & STAGING 3D ]",
     "closeButtonLabel": "[ X CHIUDI ]",
-    "instructions": "INQUADRA LA STANZA O RUOTA L'ARREDO: TOCCA IL PAVIMENTO PER COLLOCARE IL TAVOLO D'AUTORE IN SCALA 1:1.",
+    "instructions": "RUOTA L'ARREDO IN 3D O INQUADRA LA STANZA PER AMBIENTARLO DIRETTAMENTE DAL BROWSER SENZA SCARICARE APP.",
     "modelPath": "/models/walddei-monolith.glb",
     "posterPath": "/images/monolith-poster.png",
-    "arButtonLabel": "[ PROIETTA IN SALOTTO IN SCALA 1:1 // AR ]",
+    "arButtonLabel": "[ AMBIENTA NELLA STANZA // FOTOCAMERA ]",
     "hotspots": [
       {
         "id": "hotspot-1",

@@ -91,7 +91,7 @@ export default function ArViewer({ arConfig, brandConfig, onClose }) {
       {/* Top Mode Selector Tabs (Architectural Interior Navigation) */}
       <div className="flex items-center justify-between gap-1.5 border-b-2 border-[#111213] pb-2">
         <div className="flex items-center gap-1.5 overflow-x-auto py-0.5">
-          {/* Tab 1: Virtual Interior Staging AR */}
+          {/* Tab 1: Virtual Interior Staging (Camera Room View) */}
           <button
             type="button"
             onClick={() => setActiveMode("staging")}
@@ -102,10 +102,10 @@ export default function ArViewer({ arConfig, brandConfig, onClose }) {
             }`}
           >
             <Camera className="w-3 h-3 text-[#C85A17]" />
-            <span>01 // INTERIOR STAGING AR</span>
+            <span>01 // AMBIENTA IN STANZA</span>
           </button>
 
-          {/* Tab 2: 3D Furniture Inspection */}
+          {/* Tab 2: 3D Material Showroom */}
           <button
             type="button"
             onClick={() => setActiveMode("3d")}
@@ -116,7 +116,7 @@ export default function ArViewer({ arConfig, brandConfig, onClose }) {
             }`}
           >
             <Box className="w-3 h-3" style={{ color: accentColor }} />
-            <span>02 // ARREDO D'AUTORE 3D</span>
+            <span>02 // SHOWROOM 3D MATERICO</span>
           </button>
         </div>
 
@@ -229,14 +229,11 @@ export default function ArViewer({ arConfig, brandConfig, onClose }) {
                 </div>
               </div>
             ) : (
-              /* Actual Model Viewer Element */
               <model-viewer
                 ref={viewerRef}
                 src={arConfig?.modelPath || "/models/walddei-monolith.glb"}
                 poster={arConfig?.posterPath || "/images/monolith-poster.png"}
                 alt="I WAALDDEI Tavolo Basso Brutalista Monolith"
-                ar
-                ar-modes="webxr scene-viewer quick-look"
                 camera-controls
                 auto-rotate
                 rotation-per-second="14deg"
@@ -271,14 +268,15 @@ export default function ArViewer({ arConfig, brandConfig, onClose }) {
                     );
                   })}
 
-                {/* Custom AR Trigger Button (Slot ar-button recognized by model-viewer) */}
+                {/* 100% In-Browser Staging Button: Zero external Google Play Services / ARCore */}
                 <button
-                  slot="ar-button"
+                  type="button"
+                  onClick={() => setActiveMode("staging")}
                   style={{ backgroundColor: accentColor }}
-                  className="absolute bottom-4 left-4 right-4 md:left-6 md:right-6 z-20 flex items-center justify-center gap-2 px-4 py-3.5 text-white font-mono font-bold text-xs uppercase tracking-wider border-2 border-[#111213] shadow-brutal active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all cursor-pointer"
+                  className="absolute bottom-4 left-4 right-4 md:left-6 md:right-6 z-20 flex items-center justify-center gap-2 px-4 py-3 text-white font-mono font-bold text-xs uppercase tracking-wider border-2 border-[#111213] shadow-brutal active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all cursor-pointer"
                 >
-                  <Sparkles className="w-4 h-4 text-white" />
-                  <span>{arConfig?.arButtonLabel || "[ PROIETTA IN SALOTTO IN SCALA 1:1 // AR ]"}</span>
+                  <Camera className="w-4 h-4 text-white" />
+                  <span>{arConfig?.arButtonLabel || "[ AMBIENTA IN STANZA CON FOTOCAMERA ]"}</span>
                 </button>
               </model-viewer>
             )}
@@ -328,7 +326,7 @@ export default function ArViewer({ arConfig, brandConfig, onClose }) {
               className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 bg-[#111213] hover:bg-[#1C1F21] text-white border-2 border-[#111213] font-mono font-bold text-[10px] uppercase tracking-wider shadow-[2px_2px_0px_#C85A17] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all cursor-pointer"
             >
               <Camera className="w-3.5 h-3.5 text-[#C85A17]" />
-              <span>TORNA A INTERIOR STAGING CAMERA AR</span>
+              <span>AMBIENTA NELLA STANZA CON FOTOCAMERA</span>
             </button>
           </div>
 
